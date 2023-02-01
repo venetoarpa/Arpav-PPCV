@@ -1,0 +1,9 @@
+#root .SnackbarContent-root {
+    flex-wrap: nowrap;
+    overflow-wrap: anywhere;
+}
+
+html,body,#root {
+    height: 100%;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
