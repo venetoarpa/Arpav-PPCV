@@ -47,7 +47,7 @@ export const ValueRenderer = ({time, value, unit}) => {
             </Typography>
             {/*</div>*/}
             <Typography variant={'body2'}>
-              <GpsFixedOutlinedIcon fontSize={'small'}/> {roundTo4(value, 1)}{unit}
+              <GpsFixedOutlinedIcon fontSize={'small'}/> {value !== null ? roundTo4(value, 1) : '-'}{unit}
             </Typography>
           </div>);
 }

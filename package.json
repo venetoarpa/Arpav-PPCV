@@ -102,7 +102,7 @@
     "cleanAndSetup": "ts-node ./internals/scripts/clean.ts",
     "prettify": "prettier --write",
     "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js",
-    "deploy:test": "docker build -t padoafront -f staging.Dockerfile . && docker save padoafront | bzip2 | ssh gaspare 'bunzip2 | docker load; docker stop padoafront; docker rm padoafront; docker run -d --name padoafront -p 8007:80 padoafront'"
+    "build:production": "docker build -t ppcv_frontend -f production.Dockerfile ."
   },
   "eslintConfig": {
     "extends": "react-app"

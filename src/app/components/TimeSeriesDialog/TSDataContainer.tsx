@@ -223,10 +223,10 @@ const TSDataContainer = (props: TSDataContainerProps) => {
       axisPointer: {
         label: {
           show: true,
-          formatter: (v) => `${t('app.map.timeSeriesDialog.xUnit')} ${roundTo4(v.value,1)}`,
+          formatter: (v) => `${t('app.map.timeSeriesDialog.xUnit')} ${v.value !== null ? roundTo4(v.value, 1) : '-'}`,
         },
       },
-      valueFormatter: (v) => `${roundTo4(v,1)} ${timeseries[0]?.dataset?.unit}`,
+      valueFormatter: (v) => `${v !== null ? roundTo4(v, 1) : '-'} ${timeseries[0]?.dataset?.unit}`,
     },
     legend: {
       data: getLegend(),
