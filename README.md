@@ -1,46 +1,53 @@
 # PPCV Piattaforma Proiezioni Climatiche per il Veneto
 
 
-## Installa & Inizia
+## Install & development
 
-Questo progetto utilizza [Yarn Package Manager](https://yarnpkg.com) .
+This project uses the [Yarn Package Manager](https://yarnpkg.com) .
 
-Installa le dipendenze
+Install dependencies
 
 ```shell
 yarn install
 ```
 
-Prima di lanciare l'applicazione copia il contenuto del file `.env.example` nel file `.env`.
+Before launching the application, copy the contents of `.env.example` file to `.env` and edit Environment variables.
 
-Lancia l'applicazione
+Launch application in development mode
 
 ```shell
 yarn start
 ```
 
-Apri il browser e nella barra degli indirizzi inserisci il seguente URL
+Open the browser and enter the following URL in the address bar
+
 ```
 http://localhost:3000
 ```
 
-## Dipendenze
+## Dependencies
 
-- [React](https://reactjs.org/): L'intero progetto è basato su React;
-- [Redux](https://redux.js.org/): Per la gestione dello state;
+- [React](https://reactjs.org/): entire project is based on React;
+- [Redux](https://redux.js.org/): for state management;
 - [Redux-Saga](https://redux-saga.js.org/): Side effects manager;
-- [Material UI](https://mui.com/material-ui/getting-started/overview/): È il design system;
-- [Leaflet](https://leafletjs.com/): È la libreria utilizzata per la visualizzazione della mappa;
-- [ECharts](https://echarts.apache.org/): È usata per visualizzare il grafico delle serie temporali.
+- [Material UI](https://mui.com/material-ui/getting-started/overview/): design system;
+- [Leaflet](https://leafletjs.com/): library used for map visualization;
+- [ECharts](https://echarts.apache.org/): library used display the timeseries charts.
 
-## Struttura del progetto
+## Project Structure
 
-- `src/app/index.tsx`: È l'entry point dell'applicazione;
-- `src/app/pages/MapPage/index.tsx`: È il container principale e vine renderizzato sull'intera applicazione;
-- `src/app/pages`: Le pagine dell'applicazione;
-- `src/app/components`: I componenti React;
-- `src/app/Services/API`: Sono le Web API utilizzate per comunicare con il server e altri servizi come Thredds;
-- `src/app/utils/theme.ts`: Il tema personalizzato per Material UI.
-- `src/locales/it/translation.json`: Dizionario dei termini in Italiano;
-- `src/app/pages/MapPage/slice`: Gestione di Redux e Redux-Saga;
-- `src/utils`: Funzioni di utilità.
+- `src/app/index.tsx`: application's entry point;
+- `src/app/pages/MapPage/index.tsx`: main container, it's rendered throughout the application;
+- `src/app/pages`: Application pages;
+- `src/app/components`: React components;
+- `src/app/Services/API`: APIs consumers, based on `axios`, to communicate with the server and other services such as Thredds;
+- `src/app/utils/theme.ts`: Material UI theme customizations.
+- `src/locales/it/translation.json`: Italian terms dictionary;
+- `src/app/pages/MapPage/slice`: Redux and Redux-Saga management;
+- `src/utils`: Utility functions.
+
+## Docker build command for production
+
+```shell
+docker build -t ppcv_frontend -f production.Dockerfile .
+```
