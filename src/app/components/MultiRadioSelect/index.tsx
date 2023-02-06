@@ -161,7 +161,7 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
                             checked={item.selected}
                             label={
                               <Box sx={MenuLabelStyle}>
-                                <span>{item.name}</span>
+                                <span aria-label={item.name}>{item.name}</span>
                                 {isMobile ? (
                                   <Typography variant={'caption'}>
                                     {item.description}
