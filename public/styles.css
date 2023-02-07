@@ -8,8 +8,10 @@ html,body,#root {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
-span[aria-label="Media ensemble"] {
+span[aria-label="Ensemble 5rcm"] {
     font-weight: bold;
-    text-decoration-line: underline;
-    text-transform: uppercase;
+    /*text-decoration-line: underline;*/
+    /*text-transform: uppercase;*/
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
 }
