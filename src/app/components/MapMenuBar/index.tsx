@@ -40,6 +40,7 @@ import DownloadDataDialog from '../DownloadDataDialog';
 import { useEffect, useState } from 'react';
 import { useMapSlice } from '../../pages/MapPage/slice';
 import { MenuSelectionMobileStyle } from './styles';
+import SnowSunIcon from "../../icons/SnowSunIcon";
 
 export interface MapMenuBar {
   onDownloadMapImg?: Function;
@@ -296,7 +297,7 @@ export function MapMenuBar(props: MapMenuBar) {
               onChange={handleChange}
               sx={SelectStyle}
               menuSx={SelectMenuStyle}
-              mobileIcon={<SnowIcon />}
+              mobileIcon={<SnowSunIcon />}
               className={hasMissingValues(menus.seasonMenuSet) ? 'NeedsSelection' : ''}
               // label={'Season'}
             />
