@@ -135,12 +135,13 @@ const MapDlData = (props: MapDlDataProps) => {
           <Typography variant={'h6'} sx={MapDataSectionTextStyle}>
             {t('app.map.downloadDataDialog.map.timeRange')}
           </Typography>
-          <Slider
+          {times[years[0]].substring(4, 0)}<Slider
             sx={YearsSliderStyle}
             getAriaValueText={() =>
               t('app.map.downloadDataDialog.map.timeRangeLabel')
             }
-            valueLabelDisplay="on"
+            // valueLabelDisplay="on"
+            valueLabelDisplay="auto"
             step={1}
             min={0}
             max={times.length - 1}
@@ -148,7 +149,7 @@ const MapDlData = (props: MapDlDataProps) => {
             onChange={yearsHandleChange}
             valueLabelFormat={(index) => times[index].substring(4, 0)}
             disableSwap
-          />
+          />{times[years[1]].substring(4, 0)}
         </Box>
       </Box>
       <Box>{/*Column2*/}
