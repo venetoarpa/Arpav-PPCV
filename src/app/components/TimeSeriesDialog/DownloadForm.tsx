@@ -2,14 +2,12 @@ import Grid from '@mui/material/Unstable_Grid2';
 import UserDlData from '../UserDlData/userDlData';
 import {
   CloseButtonContStyle,
-  CloseIconContStyle,
   DLButtonContStyle,
   FormTitleTextStyle,
 } from './styles';
-import { Button, Box, IconButton, Typography, CircularProgress } from '@mui/material';
+import { Button, Box, Typography, CircularProgress } from '@mui/material';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import React, { useState } from 'react';
-import ExitIcon from '@mui/icons-material/HighlightOff';
 import { useTranslation } from 'react-i18next';
 import { RequestApi } from '../../Services';
 import { saveAs } from 'file-saver';
@@ -72,16 +70,6 @@ export const DownloadForm = props => {
 
   return (
     <>
-      <Grid xs={1} sx={CloseIconContStyle}>
-        <IconButton
-          color={'secondary'}
-          aria-label={t('app.common.close')}
-          component={'label'}
-          onClick={() => setOpen(false)}
-        >
-          <ExitIcon fontSize={'large'} />
-        </IconButton>
-      </Grid>
       <Grid xs={1} />
       <Grid xs={22}>
         {latLng && (

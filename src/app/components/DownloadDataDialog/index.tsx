@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Modal, Box, IconButton, Button, CircularProgress} from '@mui/material';
+import {Modal, IconButton, Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import ExitIcon from '@mui/icons-material/HighlightOff';
 // import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -10,7 +10,7 @@ import {
   CloseIconContStyle,
   DLButtonContStyle,
   DownloadContainerStyle,
-  DownloadModalStyle, MapUserContainerStyle
+  DownloadModalStyle, MapUserContainerStyle, TitleDownloadStyle
 } from "./styles";
 import MapDlData from "./mapDlData";
 import UserDlData from "../UserDlData/userDlData";
@@ -95,6 +95,22 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
       >
         <Grid xs={1}></Grid>
         <Grid xs={22}>
+          <Typography variant={'h4'} sx={TitleDownloadStyle}>
+            {t('app.header.acronymMeaning')}
+          </Typography>
+        </Grid>
+        <Grid xs={1} sx={CloseIconContStyle}>
+          <IconButton
+            color={'secondary'}
+            aria-label={t('app.common.close')}
+            component={'label'}
+            onClick={()=>setOpen(false)}
+          >
+            <ExitIcon fontSize={'large'} />
+          </IconButton>
+        </Grid>
+        <Grid xs={1}></Grid>
+        <Grid xs={22}>
           <Grid
             container
             rowSpacing={0}
@@ -113,16 +129,7 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid xs={1} sx={CloseIconContStyle}>
-          <IconButton
-            color={'secondary'}
-            aria-label={t('app.common.close')}
-            component={'label'}
-            onClick={()=>setOpen(false)}
-          >
-            <ExitIcon fontSize={'large'} />
-          </IconButton>
-        </Grid>
+        <Grid xs={1}></Grid>
         <Grid xs={0} def={1}></Grid>
         <Grid xs={24} def={11} sx={DLButtonContStyle}>
           {/*<Button*/}
