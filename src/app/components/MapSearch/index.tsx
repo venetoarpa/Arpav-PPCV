@@ -75,7 +75,7 @@ export const MapSearch: React.FunctionComponent<
     );
     // @ts-ignore
     if (found && value?.latlng) {
-      context.map.flyTo([value.latlng.lat, value.latlng.lng], context.map.getZoom());
+      context.map.flyTo([value.latlng.lat, value.latlng.lng], context.map.getZoom()-1);
       // @ts-ignore
       found.setFeatureStyle(value.name, {
         color: 'yellow',
@@ -94,6 +94,9 @@ export const MapSearch: React.FunctionComponent<
           properties: value,
         },
       });
+      setTimeout(() => {
+        context.map.flyTo([value.latlng.lat, value.latlng.lng], context.map.getZoom()+1);
+      }, 100);
     }
   };
 
