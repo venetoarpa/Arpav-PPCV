@@ -68,12 +68,12 @@ export const MapDataContainerStyle = theme => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  // justifyContent: 'flex-start',
-  // gap: 16,
-  // [theme.breakpoints.down('def')]: {
-  //   gap: 0,
-  // },
+  justifyContent: 'flex-start',
+  gap: 16,
+  [theme.breakpoints.down('xl')]: {
+    justifyContent: 'space-between',
+    gap: 0,
+  },
 });
 
 export const MapDataSectionTextStyle = theme => ({
