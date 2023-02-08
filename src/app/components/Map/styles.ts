@@ -37,5 +37,8 @@ export const LegendBarStyle = theme => ({
     [theme.breakpoints.down('def')]: {
       width: '65px',
     },
+    '@media screen and (max-height: 770px)': {
+      width: '65px',
+    },
   },
 });
