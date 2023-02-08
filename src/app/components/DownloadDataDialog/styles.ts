@@ -85,12 +85,32 @@ export const MapDataValueTextStyle = theme => ({
   color: 'success.dark',
 });
 
+export const SliderContainerStyle = theme => ({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  alignItems: 'center',
+  marginTop: 4,
+});
+
 export const YearsSliderStyle = theme => ({
-  marginTop: 6,
+  ml: 3,
+  mr: 3,
   maxWidth: '24em',
+  [theme.breakpoints.down('def')]: {
+    ml: 2,
+    mr: 2,
+  },
   '& .MuiSlider-valueLabel': {
     backgroundColor: 'success.dark',
   },
+});
+
+export const InputYearStyle = theme => ({
+  width: '9em',
+  [theme.breakpoints.down('def')]: {
+    width: '8.5em',
+  }
 });
 
 export const ImgButtonContainerStyle = theme => ({

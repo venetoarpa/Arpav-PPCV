@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { MapState } from '../../pages/MapPage/slice/types';
-import {Box, Typography, Slider, Skeleton, Input, TextField, Button} from '@mui/material';
+import {Box, Typography, Slider, Skeleton, Input as MuiInput, TextField, Button} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {
   MapDataSectionTextStyle,
@@ -10,7 +10,7 @@ import {
   FieldContainerStyle,
   ImgButtonContainerStyle,
   ImgDoubleButtonContainerStyle,
-  MapDataContainerStyle,
+  MapDataContainerStyle, SliderContainerStyle, InputYearStyle,
 } from './styles';
 import {DownloadMap} from "./DownloadMap";
 import {roundTo4} from "../../../utils/json_manipulations";
@@ -135,21 +135,43 @@ const MapDlData = (props: MapDlDataProps) => {
           <Typography variant={'h6'} sx={MapDataSectionTextStyle}>
             {t('app.map.downloadDataDialog.map.timeRange')}
           </Typography>
-          {times[years[0]].substring(4, 0)}<Slider
-            sx={YearsSliderStyle}
-            getAriaValueText={() =>
-              t('app.map.downloadDataDialog.map.timeRangeLabel')
-            }
-            // valueLabelDisplay="on"
-            valueLabelDisplay="auto"
-            step={1}
-            min={0}
-            max={times.length - 1}
-            value={years}
-            onChange={yearsHandleChange}
-            valueLabelFormat={(index) => times[index].substring(4, 0)}
-            disableSwap
-          />{times[years[1]].substring(4, 0)}
+          <Box sx={SliderContainerStyle}>
+            <TextField
+              sx={InputYearStyle}
+              value={times[years[0]].substring(4, 0)}
+              size={"small"}
+              type={"text"}
+              // readOnly
+              inputProps={{
+                'aria-readonly': true,
+              }}
+            />
+            <Slider
+              sx={YearsSliderStyle}
+              getAriaValueText={() =>
+                t('app.map.downloadDataDialog.map.timeRangeLabel')
+              }
+              // valueLabelDisplay="on"
+              valueLabelDisplay="auto"
+              step={1}
+              min={0}
+              max={times.length - 1}
+              value={years}
+              onChange={yearsHandleChange}
+              valueLabelFormat={(index) => times[index].substring(4, 0)}
+              disableSwap
+            />
+            <TextField
+              sx={InputYearStyle}
+              value={times[years[1]].substring(4, 0)}
+              size={"small"}
+              type={"text"}
+              // readOnly
+              inputProps={{
+                'aria-readonly': true,
+              }}
+            />
+          </Box>
         </Box>
       </Box>
       <Box>{/*Column2*/}
