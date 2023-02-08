@@ -25,15 +25,20 @@ export const VectorWrapperLayer = (props: any) => {
       interactive: true,
       vectorTileLayerStyles: {
         'public.places_cities.geometry': (properties, zoom, geometryDimension) => {
+          let opacity = 0.4;
+          if(zoom >= 9 && zoom < 12)
+            opacity = 0.25;
+          else if(zoom <= 8)
+            opacity = 0.15;
+          // console.log({zoom, opacity})
           // console.log(properties, zoom, geometryDimension);
           return {
             color: 'grey',
             weight: 1,
             radius: 1,
             fill: true,
-            // fillOpacity: 0.1,
             fillOpacity: 0,
-            opacity: 0.5
+            opacity: opacity
           }
         },
       },
