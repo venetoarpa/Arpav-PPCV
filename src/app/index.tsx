@@ -22,7 +22,7 @@ import { BrowserRouter } from 'react-router-dom';
 import ModalRouter from './components/Modals';
 
 export function App() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   // const {enqueueSnackbar, closeSnackbar} = useSnackbar();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const theme = React.useMemo(
@@ -38,11 +38,11 @@ export function App() {
         <BrowserRouter>
           <ModalRouter />
           <Helmet
-            titleTemplate="%s - Piattaforma Proiezioni Climatiche per il Veneto"
-            defaultTitle="Piattaforma Proiezioni Climatiche per il Veneto"
+            titleTemplate={`%s - ${t('app.header.acronymMeaning')}`}
+            defaultTitle={t('app.header.acronymMeaning')}
             htmlAttributes={{ lang: i18n.language }}
           >
-            <meta name="description" content="Piattaforma Proiezioni Climatiche per il Veneto" />
+            <meta name="description" content={t('app.header.acronymMeaning')} />
           </Helmet>
           <MapPage />
           {/*<Routes>*/}

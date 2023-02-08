@@ -1,3 +1,12 @@
+export const TitleDownloadStyle = theme => ({
+  color: 'success.dark',
+  fontWeight: 'bold',
+  display: 'flex',
+  justifyContent: 'center',
+  mt: 5,
+  mb: 3,
+});
+
 export const DownloadModalStyle = theme => ({
   display: 'flex',
   flexDirection: 'row',

@@ -1,10 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { Modal } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import {IconButton, Modal, Typography} from '@mui/material';
+import ExitIcon from '@mui/icons-material/HighlightOff';
 import Grid from '@mui/material/Unstable_Grid2';
 import {LatLng} from "leaflet";
 import {
+  CloseIconContStyle,
   TSContainerStyle,
-  TSModalStyle
+  TSModalStyle,
+  TitleTSStyle,
 } from "./styles";
 import TSDataContainer from "./TSDataContainer";
 import {iCityItem} from "../../pages/MapPage/slice/types";
@@ -27,6 +31,8 @@ const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
   const {open = false, setOpen, selectedPoint} = props;
   const latLng = selectedPoint ? new LatLng(selectedPoint.latlng.lat, selectedPoint.latlng.lng) : null;
   const { timeserie } = useSelector(selectMap);
+
+  const { t } = useTranslation();
 
   const ids = useRef<number[]>([]);
   const timeRange = useRef<TimeRangeProps|null>();
@@ -56,8 +62,25 @@ const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
       >
         <Grid xs={1}/>
         <Grid xs={22}>
+          <Typography variant={'h4'} sx={TitleTSStyle}>
+            {t('app.header.acronymMeaning')}
+          </Typography>
+        </Grid>
+        <Grid xs={1} sx={CloseIconContStyle}>
+          <IconButton
+            color={'secondary'}
+            aria-label={t('app.common.close')}
+            component={'label'}
+            onClick={() => setOpen(false)}
+          >
+            <ExitIcon fontSize={'large'} />
+          </IconButton>
+        </Grid>
+        <Grid xs={1}/>
+        <Grid xs={22}>
           {latLng && (<TSDataContainer latLng={latLng} setIds={setIds} setTimeRange={setTimeRange}/>)}
         </Grid>
+        <Grid xs={1}/>
         <DownloadForm
           setOpen={setOpen}
           latLng={latLng}

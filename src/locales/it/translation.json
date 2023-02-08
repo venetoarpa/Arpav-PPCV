@@ -5,7 +5,7 @@
   "app.error.dlCities": "Errore nel download dei comuni.",
   "app.error.dlTimeSeries": "Errore nel download della serie temporale.",
   "app.error.dlNetcdf": "Errore nel download del NetCDF.",
-  "app.header.acronymMeaning": "Piattaforma Proiezioni Climatiche per il Veneto",
+  "app.header.acronymMeaning": "Piattaforma Proiezioni Climatiche per il Nord-Est",
   "app.header.menu.info": "Info",
   "app.header.menu.privacyPolicy": "Privacy Policy",
   "app.header.menu.dataPolicy": "Data Policy",

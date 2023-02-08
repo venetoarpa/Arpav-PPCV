@@ -1,4 +1,4 @@
-# PPCV Piattaforma Proiezioni Climatiche per il Veneto
+# Piattaforma Proiezioni Climatiche per il Nord-Est
 
 
 ## Install & development
