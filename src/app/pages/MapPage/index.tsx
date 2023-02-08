@@ -219,7 +219,7 @@ ${year ? ` - Anno ${year}` : ''}   © ARPA Veneto
       })
       .then(blob => {
         setInProgress(false);
-        saveAs(blob as Blob, 'ppcv-map.jpg');
+        saveAs(blob as Blob, 'ppcne-map.jpg');
       })
       .catch(e => {
         setInProgress(false);

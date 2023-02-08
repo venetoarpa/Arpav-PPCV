@@ -50,7 +50,7 @@ const HeaderBar = () => {
               PPC
             </Typography>
             <Typography variant="h5" component="span" sx={LogoStyleV}>
-              {'V '}
+              {'NE '}
             </Typography>
             {!isMobile &&
               <Typography variant="h6" component="span">
