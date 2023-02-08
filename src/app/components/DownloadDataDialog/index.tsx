@@ -90,11 +90,11 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
         container
         rowSpacing={0}
         columnSpacing={{ xs: 0 }}
-        columns={{ xs: 24, def: 24 }}
+        columns={{ xs: 28, def: 28 }}
         sx={DownloadContainerStyle}
       >
         <Grid xs={1}></Grid>
-        <Grid xs={22}>
+        <Grid xs={26}>
           <Typography variant={'h4'} sx={TitleDownloadStyle}>
             {t('app.header.acronymMeaning')}
           </Typography>
@@ -110,18 +110,18 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
           </IconButton>
         </Grid>
         <Grid xs={1}></Grid>
-        <Grid xs={22}>
+        <Grid xs={26}>
           <Grid
             container
             rowSpacing={0}
             columnSpacing={{ xs: 0 }}
-            columns={{ xs: 22, def: 22 }}
+            columns={{ xs: 26, def: 26 }}
             sx={MapUserContainerStyle}
           >
-            <Grid xs={22}>
+            <Grid xs={26}>
               <MapDlData onChange={handleChange} />
             </Grid>
-            <Grid xs={22}>
+            <Grid xs={26}>
               <UserDlData
                 onChange={handleChange}
                 onValidityChange={userValidityHandleChange}
@@ -131,7 +131,7 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
         </Grid>
         <Grid xs={1}></Grid>
         <Grid xs={0} def={1}></Grid>
-        <Grid xs={24} def={11} sx={DLButtonContStyle}>
+        <Grid xs={28} def={11} sx={DLButtonContStyle}>
           {/*<Button*/}
           {/*  disabled={downloadDisabled || loader}*/}
           {/*  color={'primary'}*/}
@@ -151,7 +151,7 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
             {t('app.map.downloadDataDialog.DLNetCDF')}
           </Button>
         </Grid>
-        <Grid xs={24} def={11} sx={CloseButtonContStyle}>
+        <Grid xs={28} def={11} sx={CloseButtonContStyle}>
           <Button
             variant={'contained'}
             color={'secondary'}

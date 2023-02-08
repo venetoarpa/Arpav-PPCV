@@ -67,8 +67,8 @@ export const CloseButtonContStyle = theme => ({
 });
 
 export const FieldContainerStyle = theme => ({
-  ml: 1,
-  mr: 1,
+  ml: 0,
+  mr: 0,
   mt: 4,
   mb: 4,
 });
