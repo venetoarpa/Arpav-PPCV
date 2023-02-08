@@ -58,18 +58,22 @@ export const CloseButtonContStyle = theme => ({
 });
 
 export const FieldContainerStyle = theme => ({
-  m: 4,
+  ml: 1,
+  mr: 1,
+  mt: 4,
+  mb: 4,
 });
 
 export const MapDataContainerStyle = theme => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
-  justifyContent: 'flex-start',
-  gap: 16,
-  [theme.breakpoints.down('def')]: {
-    gap: 0,
-  },
+  justifyContent: 'space-between',
+  // justifyContent: 'flex-start',
+  // gap: 16,
+  // [theme.breakpoints.down('def')]: {
+  //   gap: 0,
+  // },
 });
 
 export const MapDataSectionTextStyle = theme => ({
