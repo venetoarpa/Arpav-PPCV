@@ -176,8 +176,11 @@ const slice = createSlice({
     setMap(state, action: PayloadAction<Filters>) {
       const filterDict = Object.fromEntries(Object.entries(action.payload).filter(([key]) => full_find_keys.includes(key)));
       const filtered = findItemByFilters(JSON.parse(JSON.stringify(state.layers)), filterDict);
-      if(filtered.length > 0)
+      if(filtered.length > 0) {
         state.selected_map = filtered[0];
+        if(filtered.length === 1)
+          state.selectactable_parameters = setSelectable(state)[0];
+      }
     },
     changeSelection(state, action: PayloadAction<ChangeMapSelectionPatyload>) {
       state.selected_map.id = null;
