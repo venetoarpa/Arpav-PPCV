@@ -3,7 +3,7 @@ import {useMap, useMapEvent} from "react-leaflet";
 import {WMS_PROXY_URL} from "../../../utils/constants";
 import {useSelector} from "react-redux";
 import {useLeafletContext, withPane} from '@react-leaflet/core'
-import {useEffect, useState} from 'react'
+import {useEffect, useRef} from 'react'
 import 'leaflet-timedimension';
 import './timedimension.extended';
 import 'leaflet/dist/leaflet.css';
@@ -12,21 +12,41 @@ import 'leaflet-timedimension/dist/leaflet.timedimension.control.min.css';
 
 export const ThreddsWrapperLayer = (props: any) => {
   const {selected_map} = useSelector((state: any) => state.map);
-  const map = useMap();
   const context = useLeafletContext()
-  const [layer, setLayer] = useState<any>(null);
+  const layer = useRef<any>(null);
+  const setLayer = (l: any) => {
+    layer.current = l;
+  }
 
-  const setupFrontLayer = (layer) => {
-    if(layer) {
+  const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
+
+
+  const setupFrontLayer = (layer, map) => {
+    if (layer) {
       layer.bringToFront();
     }
     try {
-      const map = layer?._map ? layer._map : context.layerContainer ?? context.map;
+      // @ts-ignore
       Object.keys(map._layers).map((l: any) => {
+        // @ts-ignore
         l = map._layers[l];
         if (l && l._url && l._url.includes(`public.places_cities.geometry`)) {
-          // console.log('PASSO!!!', {l});
           l.bringToFront();
+        }
+        if (l._url
+          && l._url.includes(`${WMS_PROXY_URL}/thredds/wms/`)
+          // @ts-ignore
+          && !l._url.includes(map.selected_path)
+        ) {
+          map.removeLayer(l);
+        }
+        if (l.currentLayer && l.currentLayer._url
+          && l.currentLayer._url.includes(`${WMS_PROXY_URL}/thredds/wms/`)
+          // @ts-ignore
+          && !l.currentLayer._url.includes(map.selected_path)
+        ) {
+          l.currentLayer.hide();
+          map.removeLayer(l);
         }
       });
     } catch (e) {
@@ -34,12 +54,24 @@ export const ThreddsWrapperLayer = (props: any) => {
     }
   }
 
-  useMapEvent('baselayerchange', () => setupFrontLayer(layer));
-  // useMapEvent('click', () => setupFrontLayer(layer));
+  useMapEvent('baselayerchange', () => setupFrontLayer(layer.current, context.map));
+  // @ts-ignore
+  useMapEvent('timeload', () => setupFrontLayer(layer.current, context.map));
+  // @ts-ignore
+  useMapEvent('timeloading', () => setupFrontLayer(layer.current, context.map));
 
   useEffect(() => {
+    const map = context.map;
+    // @ts-ignore
+    if (!map.setupFrontLayer) map.setupFrontLayer = setupFrontLayer;
+    // @ts-ignore
+    map.selected_path = selected_map.path;
     if (selected_map.path) {
-      const container = context.layerContainer ?? context.map;
+      // @ts-ignore
+      if (layer.current && layer.current._currentLayer && layer.current._currentLayer._url && layer.current._currentLayer._url.includes(`${WMS_PROXY_URL}/thredds/wms/`) && layer.current._currentLayer._url.includes(selected_map.path)) {
+        setupFrontLayer(layer.current, map);
+        return;
+      }
       let tdWmsLayer = null;
       const params = {
         layers: selected_map.layer_id,
@@ -58,48 +90,41 @@ export const ThreddsWrapperLayer = (props: any) => {
       const options = {
         opacity: 0.85,
         attribution: '&copy; <a target="_blank" rel="noopener" href="https://www.arpa.veneto.it/">ARPAV</a> ARPA Veneto'
-        // attribution: '&copy; <a target="_blank" rel="noopener" href="https://www.arpa.veneto.it/">ARPAV</a> Agenzia regionale per la protezione ambientale del Veneto'
       }
       // @ts-ignore
-      const wmsLayer = new TileLayer.WMS(`${WMS_PROXY_URL}/thredds/wms/${selected_map.path}`, {...params, ...withPane(options, context),});
+      const wmsLayer = new TileLayer.WMS(`${WMS_PROXY_URL}/thredds/wms/${selected_map.path}`, {...params, ...withPane(options, map),});
       if (selected_map.id && selected_map.data_series === 'yes') {
         // @ts-ignore
-        tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
+        tdWmsLayer = L.timeDimension.layer.wms(wmsLayer, {
+          requestTimeFromCapabilities: true,
+          cache: 1000,
+          zIndex: 1000
+        });
         if (tdWmsLayer) {
-          context.map.addLayer(tdWmsLayer);
+          map.addLayer(tdWmsLayer);
           // @ts-ignore
-          setupFrontLayer(tdWmsLayer);
+          setupFrontLayer(tdWmsLayer, context.map);
           setLayer(tdWmsLayer);
           try {
             // @ts-ignore
-            context.map._controlContainer.getElementsByClassName("leaflet-bar-timecontrol")[0].style.display = 'flex';
+            map._controlContainer.getElementsByClassName("leaflet-bar-timecontrol")[0].style.display = 'flex';
           } catch (e) {
             // console.log(e)
           }
         }
       } else {
-        context.map.addLayer(wmsLayer);
-        setupFrontLayer(wmsLayer);
+        map.addLayer(wmsLayer);
+        setupFrontLayer(wmsLayer, context.map);
         setLayer(wmsLayer);
         try {
           // @ts-ignore
-          context.map._controlContainer.getElementsByClassName("leaflet-bar-timecontrol")[0].style.display = 'none';
+          map._controlContainer.getElementsByClassName("leaflet-bar-timecontrol")[0].style.display = 'none';
         } catch (e) {
           // console.log(e)
         }
       }
-      return () => {
-        // @ts-ignore
-        Object.keys(container._layers).map((layer: any) => {
-          // @ts-ignore
-          layer = container._layers[layer];
-          if (layer._url && layer._url.includes(`${WMS_PROXY_URL}/thredds/wms/`)) {
-            container.removeLayer(layer);
-          }
-        });
-      }
     }
-  }, [selected_map.path, map]);
+  }, [selected_map.path]);
 
   return null;
 }
