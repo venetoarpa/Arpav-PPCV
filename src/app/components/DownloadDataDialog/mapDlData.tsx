@@ -136,16 +136,7 @@ const MapDlData = (props: MapDlDataProps) => {
             {t('app.map.downloadDataDialog.map.timeRange')}
           </Typography>
           <Box sx={SliderContainerStyle}>
-            <TextField
-              sx={InputYearStyle}
-              value={times[years[0]].substring(4, 0)}
-              size={"small"}
-              type={"text"}
-              // readOnly
-              inputProps={{
-                'aria-readonly': true,
-              }}
-            />
+            <span>{times[years[0]].substring(4, 0)}</span>
             <Slider
               sx={YearsSliderStyle}
               getAriaValueText={() =>
@@ -161,16 +152,7 @@ const MapDlData = (props: MapDlDataProps) => {
               valueLabelFormat={(index) => times[index].substring(4, 0)}
               disableSwap
             />
-            <TextField
-              sx={InputYearStyle}
-              value={times[years[1]].substring(4, 0)}
-              size={"small"}
-              type={"text"}
-              // readOnly
-              inputProps={{
-                'aria-readonly': true,
-              }}
-            />
+            <span>{times[years[1]].substring(4, 0)}</span>
           </Box>
         </Box>
       </Box>
