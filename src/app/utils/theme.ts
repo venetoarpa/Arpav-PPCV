@@ -46,13 +46,13 @@ export const lightTheme = {
       white: '#fff',
     },
     primary: {
-      main: '#d18a5c',
-      light: '#dea362',
+      main: '#ae6028',
+      light: '#ae6028',
       dark: '#ae6028',
       contrastText: '#fff',
     },
     secondary: {
-      main: '#777777',
+      main: '#4f4f4f',
       light: '#ececec',
       dark: '#4f4f4f',
       contrastText: '#fff',
@@ -156,7 +156,7 @@ const _darkTheme = {
     },
     warning: {
       main: '#ffa726',
-      light: '#ffb74d',
+      light: '#f57c00',
       dark: '#f57c00',
       contrastText: 'rgba(0, 0, 0, 0.87)',
     },

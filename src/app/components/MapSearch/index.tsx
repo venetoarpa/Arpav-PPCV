@@ -117,7 +117,7 @@ export const MapSearch: React.FunctionComponent<
           isOptionEqualToValue={(option, value) => option.label === value.label}
         />
         {value && (typeof openCharts === 'function' && selected_map.data_series === 'yes' && (
-          <IconButton onClick={() => openCharts(value)}>
+          <IconButton onClick={() => openCharts(value)} aria-label={"Mostra serie temporale"}>
             <LineAxisIcon />
           </IconButton>
         ))}
@@ -134,10 +134,11 @@ export const MapSearch: React.FunctionComponent<
                     variant="outlined"
                     onClick={() => context.map.flyTo([value.latlng.lat, value.latlng.lng], context.map.getZoom())}
                     endIcon={<ZoomInMapIcon fontSize={'small'} color={'secondary'}/>}
+                    aria-label={"Centra la mappa"}
                     >{roundTo4(value.latlng.lat)}, {roundTo4(value.latlng.lng)}</Button>}
           {
             !value?.latlng && (<Button size={'small'}  color={'secondary'} variant="outlined"
-            onClick={resetMap}
+            onClick={resetMap} aria-label={"Centra la mappa"}
             >
                 {/*<RestartAlt/>*/}
                 <ZoomInMapIcon/>

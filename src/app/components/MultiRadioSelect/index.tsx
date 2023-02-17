@@ -14,7 +14,7 @@ import {
   MenuItem,
   Select,
   Typography,
-  useMediaQuery,
+  useMediaQuery, InputLabel,
 } from '@mui/material';
 import {
   MultiRadioSelectMenuStyle,
@@ -75,6 +75,7 @@ export interface MultiRadioSelectProps {
   menuSx?: SxProps<Theme>;
   mobileIcon?: JSX.Element;
   className?: string;
+  label: string;
 }
 
 export function MultiRadioSelect(props: MultiRadioSelectProps) {
@@ -82,6 +83,7 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
   const valueSet = props.valueSet;
   const sx = props.sx;
   const menuSx = props.menuSx;
+  const label = props.label;
   const className = props.className ?? ''
   const MobileIcon = () => props.mobileIcon ?? <></>;
 
@@ -100,12 +102,14 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
   const renderSelectedValue = () => valueSet.map(({rows}) => rows.map(({items}) => items.find(x => x.selected)?.name)).flat().filter(x => x).join(' - ');
 
   return (
-    <FormControl sx={sx} className={className}>
+    <FormControl sx={sx} className={className} hiddenLabel={false}>
     {/*<FormControl sx={{...SelectContainerStyle,...sx}}>*/}
       <Select
+        aria-label={label}
+        aria-hidden={false}
         multiple
         value={values}
-        renderValue={() => isMobile ? <Box sx={IconBoxStyle}><MobileIcon /></Box> : renderSelectedValue() }
+        renderValue={() => isMobile ? <Box sx={IconBoxStyle}><MobileIcon /></Box> : renderSelectedValue()}
         open={isOpen}
         onOpen={()=>setIsOpen(true)}
         onClose={()=>setIsOpen(false)}
@@ -119,6 +123,7 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
             color={'default'}
             component={'label'}
             onClick={()=>setIsOpen(false)}
+            aria-label={label}
           >
             <ExitIcon fontSize={'medium'}/>
           </IconButton>

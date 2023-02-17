@@ -71,9 +71,9 @@ const HeaderBar = () => {
           </MuiLink>
         </Box>
           <Box sx={BoxImgStyle}>
-            {!isMobile && <MuiLink href={'https://www.regione.veneto.it/'}><img src={regioneImg} alt={''}/></MuiLink>}
-            <MuiLink href={'https://www.arpa.veneto.it/'}><img src={arpavImg} alt={''}/></MuiLink>
-            {!isMobile && <MuiLink href={'https://www.snpambiente.it/'}><img src={snpaImg} alt={''}/></MuiLink>}
+            {!isMobile && <MuiLink href={'https://www.regione.veneto.it/'}><img src={regioneImg} alt={'Regione Veneto'}/></MuiLink>}
+            <MuiLink href={'https://www.arpa.veneto.it/'}><img src={arpavImg} alt={'ARPA Veneto'}/></MuiLink>
+            {!isMobile && <MuiLink href={'https://www.snpambiente.it/'}><img src={snpaImg} alt={'SNPAmbiente'}/></MuiLink>}
           </Box>
       </Toolbar>
       {/*<p><small>{JSON.stringify(actualstate)} - {JSON.stringify(route)}</small></p>*/}

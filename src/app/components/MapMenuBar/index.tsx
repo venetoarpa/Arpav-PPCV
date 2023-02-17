@@ -266,7 +266,7 @@ export function MapMenuBar(props: MapMenuBar) {
               menuSx={SelectMenuStyle}
               mobileIcon={<ThermostatIcon />}
               className={hasMissingValues(menus.variableMenuSet) ? 'NeedsSelection' : ''}
-              // label={'Indicator'}
+              label={t('app.map.menuBar.indicator')}
             />
           </Grid>
           <Grid xs={1} def={2} sx={SecondRowStyle}>
@@ -278,6 +278,7 @@ export function MapMenuBar(props: MapMenuBar) {
               mobileIcon={<ShowChartIcon />}
               className={hasMissingValues(menus.modelAndScenarioMenuSet) ? 'NeedsSelection' : ''}
               // label={'Model and Scenario'}
+              label={t('app.map.menuBar.model')}
             />
           </Grid>
           <Grid xs={1} def={2} sx={SecondRowStyle}>
@@ -289,6 +290,7 @@ export function MapMenuBar(props: MapMenuBar) {
               mobileIcon={<DateRangeIcon />}
               className={hasMissingValues(menus.periodMenuSet) ? 'NeedsSelection' : ''}
               // label={'Period'}
+              label={t('app.map.menuBar.period')}
             />
           </Grid>
           <Grid xs={1} def={2} sx={SecondRowStyle}>
@@ -299,6 +301,7 @@ export function MapMenuBar(props: MapMenuBar) {
               menuSx={SelectMenuStyle}
               mobileIcon={<SnowSunIcon />}
               className={hasMissingValues(menus.seasonMenuSet) ? 'NeedsSelection' : ''}
+              label={t('app.map.menuBar.season')}
               // label={'Season'}
             />
           </Grid>
