@@ -7,7 +7,7 @@ export const DownloadMap = ({mapBounds, downLoadBounds}) => {
       center={[45.9,12.45]}
       zoom={7}
       maxZoom={14}
-      style={{ height: '320px', width: '100%' }}>
+      style={{ height: '320px', width: '100%', minWidth: '320px' }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -3,7 +3,7 @@
   "app.snackbar.dismiss": "Chiudi",
   "app.error.dlParameters": "Errore nel download dei parametri.",
   "app.error.dlCities": "Errore nel download dei comuni.",
-  "app.error.dlTimeSeries": "Errore nel download della serie temporale.",
+  "app.error.dlTimeSeries": "Errore nel download dei dati.",
   "app.error.dlNetcdf": "Errore nel download del NetCDF.",
   "app.header.acronymMeaning": "Piattaforma Proiezioni Climatiche per il Nord-Est",
   "app.header.menu.info": "Info",
