@@ -156,13 +156,13 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
                   >
                     {row.items.map(item => {
                       return (
-                        <MenuItem key={item.id} disableGutters>
+                        <MenuItem key={item.id} disableGutters disabled={item.disabled}>
                           <FormControlLabel
                             className={`MultiRadioSelectMenuItem ${item.selected?'MultiRadioSelectMenuItem-selected':''}`}
                             //See Sorting fields note.
                             value={item.id}
                             control={<Radio />}
-                            disabled={item.disabled}
+                            // disabled={item.disabled}
                             checked={item.selected}
                             label={
                               <Box sx={MenuLabelStyle}>
