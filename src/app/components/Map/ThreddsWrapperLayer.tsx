@@ -21,8 +21,8 @@ export const ThreddsWrapperLayer = (props: any) => {
   const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
 
 
-  const setupFrontLayer = (layer, map) => {
-    if (layer) {
+  const setupFrontLayer = (layer, map, onlyRemove=false) => {
+    if (layer && !onlyRemove) {
       layer.bringToFront();
     }
     try {
@@ -33,14 +33,14 @@ export const ThreddsWrapperLayer = (props: any) => {
         if (l && l._url && l._url.includes(`public.places_cities.geometry`)) {
           l.bringToFront();
         }
-        if (l._url
+        if (l && l._url
           && l._url.includes(`${WMS_PROXY_URL}/thredds/wms/`)
           // @ts-ignore
           && !l._url.includes(map.selected_path)
         ) {
           map.removeLayer(l);
         }
-        if (l.currentLayer && l.currentLayer._url
+        if (l && l.currentLayer && l.currentLayer._url
           && l.currentLayer._url.includes(`${WMS_PROXY_URL}/thredds/wms/`)
           // @ts-ignore
           && !l.currentLayer._url.includes(map.selected_path)
@@ -59,6 +59,10 @@ export const ThreddsWrapperLayer = (props: any) => {
   useMapEvent('timeload', () => setupFrontLayer(layer.current, context.map));
   // @ts-ignore
   useMapEvent('timeloading', () => setupFrontLayer(layer.current, context.map));
+  // @ts-ignore
+  useMapEvent('layeradd', () => setupFrontLayer(layer.current, context.map, true));
+  // @ts-ignore
+  useMapEvent('layerremove', () => setupFrontLayer(layer.current, context.map, true));
 
   useEffect(() => {
     const map = context.map;
