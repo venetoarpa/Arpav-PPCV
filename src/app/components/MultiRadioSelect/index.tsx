@@ -109,7 +109,7 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
         aria-hidden={false}
         multiple
         value={values}
-        renderValue={() => isMobile ? <Box sx={IconBoxStyle}><MobileIcon /></Box> : renderSelectedValue()}
+        renderValue={() => isMobile ? <Box sx={IconBoxStyle} aria-label={label}><MobileIcon /></Box> : renderSelectedValue()}
         open={isOpen}
         onOpen={()=>setIsOpen(true)}
         onClose={()=>setIsOpen(false)}
@@ -123,7 +123,7 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
             color={'default'}
             component={'label'}
             onClick={()=>setIsOpen(false)}
-            aria-label={label}
+            aria-label={`chiudi ${label}`}
           >
             <ExitIcon fontSize={'medium'}/>
           </IconButton>

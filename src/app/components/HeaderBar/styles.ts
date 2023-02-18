@@ -70,6 +70,10 @@ export const BoxImgStyle = theme => ({
 
 export const LogoStyle = (theme) => ({
   fontWeight: 'bold',
+      display: 'none',
+  [theme.breakpoints.down('md')]: {
+      display: 'inline'
+    }
 });
 
 export const LogoStyleV = (theme) => ({

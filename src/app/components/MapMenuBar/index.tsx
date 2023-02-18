@@ -311,6 +311,7 @@ export function MapMenuBar(props: MapMenuBar) {
                 <IconButton
                   onClick={() => setDownloadDataOpen(true)}
                   disabled={timeserie.length == 0}
+                  aria-label={t('app.map.menuBar.downloadData')}
                 >
                   <FileDownloadIcon />
                 </IconButton>
@@ -319,7 +320,7 @@ export function MapMenuBar(props: MapMenuBar) {
                   startIcon={<FileDownloadIcon />}
                   onClick={() => setDownloadDataOpen(true)}
                   disabled={timeserie.length == 0}
-                >
+                  aria-label={t('app.map.menuBar.downloadData')}>
                   {t('app.map.menuBar.downloadData')}
                 </Button>
               )}
@@ -332,13 +333,16 @@ export function MapMenuBar(props: MapMenuBar) {
           <Grid xs={1} sx={SecondRowStyle}>
             <Box sx={ButtonBoxStyle}>
               {isMobile ? (
-                <IconButton onClick={() => onDownloadMapImg()}>
+                <IconButton
+                  onClick={() => onDownloadMapImg()}
+                  aria-label={t('app.map.menuBar.downloadMap')}>
                   <PhotoCameraIcon />
                 </IconButton>
               ) : (
                 <Button
                   startIcon={<PhotoCameraIcon />}
                   onClick={() => onDownloadMapImg()}
+                  aria-label={t('app.map.menuBar.downloadMap')}
                 >
                   {t('app.map.menuBar.downloadMap')}
                 </Button>
