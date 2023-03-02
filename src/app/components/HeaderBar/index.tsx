@@ -44,7 +44,7 @@ const HeaderBar = () => {
             <MenuIcon />
           </IconButton>
           */}
-        <Box>
+        <Box style={{paddingLeft: '10px'}}>
           <MuiLink sx={BoxTitleStyle} href="/" color='success.dark' underline={'none'}>
             <Typography variant="h5" component="span" sx={LogoStyle}>
               PPC
@@ -66,15 +66,17 @@ const HeaderBar = () => {
           <MuiLink component={Link} to="/privacy" color="primary" underline={'none'}>
             {t('app.header.menu.privacyPolicy')}
           </MuiLink>
-          <MuiLink component={Link} to="/data" color="primary" underline={'none'}>
+          <MuiLink component={Link} to="/data" color="primary" underline={'none'} style={{paddingRight: '10px'}}>
             {t('app.header.menu.dataPolicy')}
           </MuiLink>
         </Box>
+        {/*
           <Box sx={BoxImgStyle}>
             {!isMobile && <MuiLink href={'https://www.regione.veneto.it/'}><img src={regioneImg} alt={'Regione Veneto'}/></MuiLink>}
             <MuiLink href={'https://www.arpa.veneto.it/'}><img src={arpavImg} alt={'ARPA Veneto'}/></MuiLink>
             {!isMobile && <MuiLink href={'https://www.snpambiente.it/'}><img src={snpaImg} alt={'SNPAmbiente'}/></MuiLink>}
           </Box>
+         */}
       </Toolbar>
       {/*<p><small>{JSON.stringify(actualstate)} - {JSON.stringify(route)}</small></p>*/}
     </AppBar>
