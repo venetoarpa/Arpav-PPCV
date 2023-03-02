@@ -95,7 +95,7 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
       >
         <Grid xs={1}></Grid>
         <Grid xs={26}>
-          <Typography variant={'h4'} sx={TitleDownloadStyle}>
+          <Typography variant={'h6'} sx={TitleDownloadStyle}>
             {t('app.header.acronymMeaning')}
           </Typography>
         </Grid>

@@ -30,6 +30,7 @@ export interface TimeRangeProps {
 const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
   const {open = false, setOpen, selectedPoint} = props;
   const latLng = selectedPoint ? new LatLng(selectedPoint.latlng.lat, selectedPoint.latlng.lng) : null;
+  const place = selectedPoint ? selectedPoint.name : null;
   const { timeserie } = useSelector(selectMap);
 
   const { t } = useTranslation();
@@ -62,7 +63,7 @@ const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
       >
         <Grid xs={1}/>
         <Grid xs={22}>
-          <Typography variant={'h4'} sx={TitleTSStyle}>
+          <Typography variant={'h6'} sx={TitleTSStyle}>
             {t('app.header.acronymMeaning')}
           </Typography>
         </Grid>
@@ -78,7 +79,7 @@ const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
         </Grid>
         <Grid xs={1}/>
         <Grid xs={22}>
-          {latLng && (<TSDataContainer latLng={latLng} setIds={setIds} setTimeRange={setTimeRange}/>)}
+          {latLng && (<TSDataContainer latLng={latLng} setIds={setIds} setTimeRange={setTimeRange} place={place}/>)}
         </Grid>
         <Grid xs={1}/>
         <DownloadForm

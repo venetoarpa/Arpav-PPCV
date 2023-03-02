@@ -101,7 +101,9 @@ export const ThreddsWrapperLayer = (props: any) => {
         // @ts-ignore
         tdWmsLayer = L.timeDimension.layer.wms(wmsLayer, {
           requestTimeFromCapabilities: true,
-          cache: 1000,
+          cache: 0,
+          cacheBackward: 0,
+          cacheForward: 0,
           zIndex: 1000
         });
         if (tdWmsLayer) {

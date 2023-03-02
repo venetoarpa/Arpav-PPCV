@@ -215,7 +215,7 @@ const UserDlData = (props: UserDlDataProps) => {
                 }}
                 component={CheckboxWithLabel}
                 size={isMobile ? 'small' : 'medium'}
-              />  <Link href={'/data'} target={'_blank'}>Data policy</Link> - <Link href={'/privacy'} target={'_blank'}>Privacy policy</Link>
+              />  <Link href={'/data'} target={'_blank'}>Data policy</Link> - <Link href={'/privacy'} target={'_blank'}>Privacy policy</Link> - <Link href={'/info'} target={'_blank'}>{t("app.header.menu.info")}</Link>
             </Box>
             <ValidityToken />
           </Form>
