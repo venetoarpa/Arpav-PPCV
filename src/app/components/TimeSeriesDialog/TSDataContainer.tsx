@@ -85,6 +85,7 @@ const TSDataContainer = (props: TSDataContainerProps) => {
       : forecast_models.find(x => x.includes('ens')),
   ]);
   const [timeseries, setTimeseries] = useState<any>([]);
+  const joinNames = (names: string[]) => names.filter(name => name).join(' - ');
   const colors = [
     {
       Rcp26: 'rgb(46,105,193)',
@@ -246,7 +247,14 @@ const TSDataContainer = (props: TSDataContainerProps) => {
       left: isMobile ? 'center' : 'right',
       feature: {
         saveAsImage: {
-          name: 'time_series',
+          name: `Serie temporale ${findValueName('variable', 'variables')} - ${joinNames([
+          findValueName('forecast_model', 'forecast_models'),
+          findValueName('scenario', 'scenarios'),
+        ])} - ${joinNames([
+          findValueName('data_series', 'data_series'),
+          findValueName('value_type', 'value_types'),
+          findValueName('time_window', 'time_windows'),
+        ])} - ${findValueName('year_period', 'year_periods')}`,
           title: t('app.map.timeSeriesDialog.saveAsImage'),
           icon: photoCameraIconPath,
           iconStyle: {

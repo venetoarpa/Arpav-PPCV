@@ -199,11 +199,7 @@ export function MapPage(props: Props) {
     }
 
     setInProgress(true);
-    mapScreen
-      .takeScreen(format, {
-        captionFontSize: isMobile ? 10 : 12,
-        screenName: `${findValueName('variable', 'variables')}`,
-        caption: `${isMobile ? selected_map.variable : findValueName('variable', 'variables')}
+    const caption = `${isMobile ? selected_map.variable : findValueName('variable', 'variables')}
 - ${joinNames([
           findValueName('forecast_model', 'forecast_models'),
           findValueName('scenario', 'scenarios'),
@@ -214,12 +210,24 @@ export function MapPage(props: Props) {
           findValueName('time_window', 'time_windows'),
         ])}
 - ${findValueName('year_period', 'year_periods')}
-${year ? ` - Anno ${year}` : ''}   © ARPA Veneto
-      `, // streeng or function, added caption to bottom of screen
+${year ? ` - Anno ${year}` : ''}   © ARPA Veneto`; // string or function, added caption to bottom of screen
+    const filename = `Screenshot ${findValueName('variable', 'variables')} - ${joinNames([
+          findValueName('forecast_model', 'forecast_models'),
+          findValueName('scenario', 'scenarios'),
+        ])} - ${joinNames([
+          findValueName('data_series', 'data_series'),
+          findValueName('value_type', 'value_types'),
+          findValueName('time_window', 'time_windows'),
+        ])} - ${findValueName('year_period', 'year_periods')} ${year ? ` Anno ${year}` : ''}.png`;
+    mapScreen
+      .takeScreen(format, {
+        captionFontSize: isMobile ? 10 : 12,
+        screenName: `${findValueName('variable', 'variables')}`,
+        caption: caption,
       })
       .then(blob => {
         setInProgress(false);
-        saveAs(blob as Blob, 'ppcne-map.jpg');
+        saveAs(blob as Blob, filename);
       })
       .catch(e => {
         setInProgress(false);
