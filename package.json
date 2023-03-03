@@ -9,7 +9,6 @@
     "@fontsource/roboto": "4.5.8",
     "@mui/icons-material": "5.10.9",
     "@mui/material": "5.10.10",
-    "@piwikpro/react-piwik-pro": "1.1.1",
     "@react-leaflet/core": "2.1.0",
     "@reduxjs/toolkit": "1.8.5",
     "@testing-library/jest-dom": "5.16.5",

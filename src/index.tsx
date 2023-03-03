@@ -26,8 +26,6 @@ import { ThemeProvider } from 'styles/theme/ThemeProvider';
 
 import reportWebVitals from 'reportWebVitals';
 
-import PiwikPro from '@piwikpro/react-piwik-pro';
-
 // Initialize languages
 import './locales/i18n';
 
@@ -39,7 +37,6 @@ const openSansObserver = new FontFaceObserver('Inter', {});
 openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
-PiwikPro.initialize('2c67d0c1-2072-4de9-a337-bebe6a994092', 'https://arpav.containers.piwik.pro');
 const {store} = configureAppStore();
 // console.log({store})
 const root = ReactDOM.createRoot(

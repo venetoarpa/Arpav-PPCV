@@ -13,8 +13,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { lightTheme, darkTheme } from './utils/theme';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import { PageViews } from '@piwikpro/react-piwik-pro';
-
 
 import { MapPage } from './pages/MapPage/Loadable';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +27,6 @@ export function App() {
     () => createTheme(prefersDarkMode ? darkTheme : lightTheme),
     [prefersDarkMode],
   );
-  PageViews.trackPageView();
   // console.log('MOUNTING APP');
 
   return (
