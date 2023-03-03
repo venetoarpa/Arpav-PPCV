@@ -47,7 +47,7 @@ export const getOptionsForForecastParameters = (layers, filterDict, variables, d
         variables: variables.map(x => x.id),
         forecast_models: getValuesFor('forecast_model', layers, filterDict),
         scenarios: getValuesFor('scenario', layers, filterDict),
-        data_series: getValuesFor('data_series', layers, filterDict, ['time_windows', 'value_type']),
+        data_series: getValuesFor('data_series', layers, filterDict, ['time_windows', 'value_type', 'year_period']),
         year_periods: getValuesFor('year_period', layers, filterDict),
         time_windows: data_series === 'no' ? getValuesFor('time_window', layers, filterDict) : [],
         value_types: getValuesFor('value_type', layers, filterDict),
