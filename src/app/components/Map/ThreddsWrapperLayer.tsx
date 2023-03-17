@@ -79,7 +79,7 @@ export const ThreddsWrapperLayer = (props: any) => {
       let tdWmsLayer = null;
       const params = {
         layers: selected_map.layer_id,
-        format: 'image/png',
+        format: 'image/gif',
         numcolorbands: '100',
         version: '1.1.1',
         colorscalerange: `${selected_map.color_scale_min},${selected_map.color_scale_max}`,
