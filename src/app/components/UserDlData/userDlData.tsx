@@ -30,6 +30,7 @@ const UserDlData = (props: UserDlDataProps) => {
   enum Reason {
     Study = 'study',
     Inst = 'institutional',
+    Comm = 'commercial',
     Other = 'other',
   };
 
@@ -175,6 +176,11 @@ const UserDlData = (props: UserDlDataProps) => {
                     value={Reason.Inst}
                     control={<Radio />}
                     label={t('app.map.downloadDataDialog.user.institutional')}
+                  />
+                  <FormControlLabel
+                    value={Reason.Comm}
+                    control={<Radio />}
+                    label={t('app.map.downloadDataDialog.user.commercial')}
                   />
                   <FormControlLabel
                     value={Reason.Other}
