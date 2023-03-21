@@ -93,7 +93,7 @@ export const ThreddsWrapperLayer = (props: any) => {
       };
       const options = {
         opacity: 0.85,
-        attribution: '&copy; <a target="_blank" rel="noopener" href="https://www.arpa.veneto.it/">ARPAV</a> ARPA Veneto'
+        attribution: '&copy; <a target="_blank" rel="noopener" href="https://www.arpa.veneto.it/">ARPAV - Arpa FVG</a>',
       }
       // @ts-ignore
       const wmsLayer = new TileLayer.WMS(`${WMS_PROXY_URL}/thredds/wms/${selected_map.path}`, {...params, ...withPane(options, map),});

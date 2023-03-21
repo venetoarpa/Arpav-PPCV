@@ -210,7 +210,7 @@ export function MapPage(props: Props) {
           findValueName('time_window', 'time_windows'),
         ])}
 - ${findValueName('year_period', 'year_periods')}
-${year ? ` - Anno ${year}` : ''}   © ARPA Veneto`; // string or function, added caption to bottom of screen
+${year ? ` - Anno ${year}` : ''}   © ARPAV - Arpa FVG`; // string or function, added caption to bottom of screen
     const filename = `Screenshot ${findValueName('variable', 'variables')} - ${joinNames([
           findValueName('forecast_model', 'forecast_models'),
           findValueName('scenario', 'scenarios'),

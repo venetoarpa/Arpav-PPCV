@@ -203,8 +203,8 @@ const TSDataContainer = (props: TSDataContainerProps) => {
     selected_map.time_end,
   )} - ${place ? place+' - ' : ''}${t('app.map.timeSeriesDialog.lat')} ${roundTo4(latLng.lat)} ${t(
     'app.map.timeSeriesDialog.lng',
-  )} ${roundTo4(latLng.lng)}     © ARPA Veneto
-  Si tratta di proiezioni climatiche e non di previsioni a lungo termine. Il valore annuale ha validità esclusivamente in un contesto di trend decennale. Le simulazioni modellistiche sono caratterizzate da incertezza.`;
+  )} ${roundTo4(latLng.lng)}     © ARPAV - Arpa FVG
+  Si tratta di proiezioni climatiche e non di previsioni a lungo termine. Il valore annuale ha validità in un contesto di trend trentennale.`;
 
   const photoCameraIconPath =
     'path://M9 2 7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z';
@@ -249,7 +249,7 @@ const TSDataContainer = (props: TSDataContainerProps) => {
         saveAsImage: {
           name: `Serie temporale ${findValueName('variable', 'variables')} - ${joinNames([
           findValueName('forecast_model', 'forecast_models'),
-          findValueName('scenario', 'scenarios'),
+          // findValueName('scenario', 'scenarios'),
         ])} - ${joinNames([
           findValueName('data_series', 'data_series'),
           findValueName('value_type', 'value_types'),

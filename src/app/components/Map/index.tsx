@@ -103,8 +103,9 @@ const Map = (props: MapProps) => {
       timeDimensionOptions={timeDimensionOptions}
       timeDimensionControlOptions={{
         speedSlider: false,
-        backwardButton: false,
-        forwardButton: false,
+        backwardButton: true,
+        forwardButton: true,
+        playButton: false,
       }}
       //@ts-ignore
       whenReady={obj => onReady(obj.target)}
