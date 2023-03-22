@@ -72,13 +72,13 @@ export const caculateMovingAverage = (data: number[], window: number = 11): numb
         sum += data[i];
     }
     // @ts-ignore
-    result.push((sum / window).toFixed(2));
+    result.push((sum / window).toFixed(1));
     const steps = data.length - window - 1;
     for (let i = 0; i < steps; ++i) {
         sum -= data[i];
         sum += data[i + window];
         // @ts-ignore
-        result.push((sum / window).toFixed(2));
+        result.push((sum / window).toFixed(1));
     }
     return result;
 };

@@ -139,9 +139,10 @@ const TSDataContainer = (props: TSDataContainerProps) => {
 
   const getLegend = () => {
     //TODO names lookup
-    return timeseries?.map(
-      item => `${item.dataset.scenario_id} - ${item.dataset.forecast_model_id}`,
+    const legend = timeseries?.map(
+      item => `${findParamName(item.dataset.scenario_id, 'scenarios')} - ${findParamName(item.dataset.forecast_model_id, 'forecast_models')}`,
     );
+    return legend;
   };
 
   const getColor = dataset => {
@@ -173,7 +174,7 @@ const TSDataContainer = (props: TSDataContainerProps) => {
   };
 
   const seriesObj = timeseries?.map(item => ({
-    name: `${item.dataset.scenario_id} - ${item.dataset.forecast_model_id}`,
+    name: `${findParamName(item.dataset.scenario_id, 'scenarios')} - ${findParamName(item.dataset.forecast_model_id, 'forecast_models')}`,
     type: 'line',
     smooth: true,
     // sampling: 'average',

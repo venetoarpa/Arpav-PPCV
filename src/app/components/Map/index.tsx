@@ -152,16 +152,6 @@ const Map = (props: MapProps) => {
             attribution='&copy; <a target="_blank" rel="noopener" href="https://s2maps.eu/">Sentinel-2 cloudless</a> by EOX'
           />
         </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer name="Stamen TerrainBackground">
-          <WMSTileLayer
-            url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png"
-            params={{
-              layers: 'GEBCO_LATEST',
-              format: 'image/png',
-            }}
-            attribution='<a href="http://stamen.com">Stamen</a> TerrainBackground'
-          />
-        </LayersControl.BaseLayer>
       </LayersControl>
       <VectorWrapperLayer selectCallback={(point) => setPoint(point)} selectedPoint={selectedPoint}/>
       <ThreddsWrapperLayer/>

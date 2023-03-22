@@ -116,7 +116,10 @@ export const MapSearch: React.FunctionComponent<
           value={value}
           isOptionEqualToValue={(option, value) => option.label === value.label}
         />
-        {value && (typeof openCharts === 'function' && selected_map.data_series === 'yes' && (
+        {value && (typeof openCharts === 'function' && selected_map.data_series === 'yes'
+          && timeserie.length > 0 && timeserie[0].values && timeserie[0].values.length > 0
+          && timeserie[0].values[0].value !== null
+          && (
           <IconButton onClick={() => openCharts(value)} aria-label={"Mostra serie temporale"}>
             <LineAxisIcon />
           </IconButton>
