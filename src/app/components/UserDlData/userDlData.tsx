@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Box,
   Radio,
@@ -42,7 +42,7 @@ const UserDlData = (props: UserDlDataProps) => {
         place: '',
         // reason: Reason.Study,
         other_reason: '',
-        accept_disclaimer: false,
+        accept_disclaimer: null,
     };
 
   const { t } = useTranslation();
@@ -59,13 +59,17 @@ const UserDlData = (props: UserDlDataProps) => {
     return null;
   };
 
+  useEffect(() => {
+    onChange(initialValues);
+  }, [])
+
   const handleChangeForm = (event) => {
     console.debug('Form change', event);
     const anyEvent:any = event;
     let values = {};
     if (anyEvent?.target?.name) {
       if(anyEvent?.target?.type === 'checkbox')
-        values[`${anyEvent.target.name}`] = anyEvent?.target?.checked.toString();
+        values[`${anyEvent.target.name}`] = anyEvent?.target?.checked;
       else
         values[`${anyEvent.target.name}`] = anyEvent?.target?.value;
       if(anyEvent.target.name === 'reason')
@@ -86,6 +90,8 @@ const UserDlData = (props: UserDlDataProps) => {
         initialValues={initialValues}
         validateOnMount={true}
         validationSchema={Yup.object({
+          reason: Yup.string().required(),
+          public: Yup.boolean().required(),
           accept_disclaimer: Yup.boolean().oneOf(
             [true],
             t('app.map.downloadDataDialog.user.disclaimerReadError'),
@@ -213,6 +219,7 @@ const UserDlData = (props: UserDlDataProps) => {
             </Box>
             <Box sx={FieldContainerStyle}>
               <Field
+                required
                 id={'accept_disclaimer'}
                 name={'accept_disclaimer'}
                 type={'checkbox'}
