@@ -95,7 +95,7 @@ const PrivacyPolicyPage = () => {
         <br/>
         I dati personali sono trattati da ARPAV, ex art.6, par.1, lett. e) del GDPR,
         nell'esecuzione dei propri compiti di interesse pubblico o comunque connessi all'esercizio dei propri pubblici
-        poteri, di cui è investita dalla propria legge istitutiva (L.R. n.
+        poteri, di cui è investita dalla propria legge istitutiva (L.R. n. 32/1996).
       </Typography>
       <br/>
       <Typography variant="body1">
