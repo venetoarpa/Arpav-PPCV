@@ -1,12 +1,59 @@
-import {Typography} from '@mui/material';
+import {Grid, Typography, useMediaQuery} from '@mui/material';
 import PageContainer from '../../components/Modals/PageContainer';
+import React from "react";
+import {useTheme} from "@mui/material/styles";
+const regioneImg = 'img/logo_regione_veneto.png';
+const arpafvg = 'img/arpafvg-logo.svg';
+const arpavImg = 'img/logo_arpav.png';
+const snpaImg = 'img/logo_SNPA.png';
 
 
 const InfoPage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+
+  const style={
+    maxHeight: isMobile ? '10vh' : '5vh',
+    minHeight:'30px',
+    marginBottom: '30px',
+  }
+  const styleSquared={
+    maxHeight: isMobile ? '16vh' : '7vh',
+    minHeight:'30px',
+    marginBottom: '30px',
+  }
 
   return (
     <PageContainer>
-            <div dangerouslySetInnerHTML={{ __html: `
+      <>
+<br/>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+            <Grid item>
+              <a href={'https://www.arpa.veneto.it/'} target={'_blank'}><img src={arpavImg} style={style}
+                                                                             alt={'ARPA Veneto'}/></a>
+            </Grid>
+            <Grid item>
+              <a href={'https://www.arpa.fvg.it/'} target={'_blank'}><img src={arpafvg} style={style}
+                                                                          alt={'ARPA Veneto'}/></a>
+            </Grid>
+            <Grid item>
+              <a href={'https://www.snpambiente.it/'} target={'_blank'}><img src={snpaImg} style={styleSquared}
+                                                                             alt={'SNPAmbiente'}/></a>
+            </Grid>
+          {/*</Grid>*/}
+          <Grid item>
+            <a href={'https://www.regione.veneto.it/'} target={'_blank'}><img src={regioneImg} style={styleSquared}
+                                                                              alt={'Regione Veneto'}/></a>
+          </Grid>
+        </Grid>
+      <div>
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: `
 
 
 <style>
@@ -30,9 +77,9 @@ tr:nth-child(even) {
 
 
 
-<p>
-    <strong>Loghi</strong>: nell’ordine, Arpav, ArpaFVG, SNPA (allineati a sinistra); Regione (allineato a destra).
-</p>
+<!--<p>-->
+<!--    <strong>Loghi</strong>: nell’ordine, Arpav, ArpaFVG, SNPA (allineati a sinistra); Regione (allineato a destra).-->
+<!--</p>-->
 
 
 <h1>Il cambiamento climatico</h1>
@@ -279,7 +326,7 @@ tr:nth-child(even) {
 
             
             ` }} />
-
+</>
     </PageContainer>
   );
 }
