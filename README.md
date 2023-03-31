@@ -1,5 +1,13 @@
 # Piattaforma Proiezioni Climatiche per il Nord-Est
 
+[![Piattaforma Proiezioni Climatiche per il Nord-Est](https://github.com/inkode-it/Arpav-PPCV/raw/main/public/img/screenshot.png)](https://clima.arpa.veneto.it/)
+
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+<br/><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+Developed by  [INKODE soc coop](https://inkode.it)
+<br/>
+<a href="https://inkode.it"><img src="https://github.com/inkode-it/Arpav-PPCV/raw/main/public/img/logo-inkode.png" alt="inkode logo"></a>
 
 ## Install & development
 
@@ -51,3 +59,5 @@ http://localhost:3000
 ```shell
 docker build -t ppcv_frontend -f production.Dockerfile .
 ```
+
+
