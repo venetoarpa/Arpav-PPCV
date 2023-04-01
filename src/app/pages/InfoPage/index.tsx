@@ -327,7 +327,7 @@ tr:nth-child(even) {
             ` }} />
 
 <p>
-Software progettato e sviluppato da <a rel="author" href="mailto:info@inkode.it">INKODE soc coop</a>, codice sorgente disponibile su <a href="https://github.com/venetoarpa/Arpav-PPCV" target="_blank">GitHub</a><br/>
+Software progettato e sviluppato da <a rel="author" href="mailto:info@inkode.it">INKODE soc coop</a>, codice sorgente disponibile su <a href="https://github.com/venetoarpa/Arpav-PPCV-backend/" target="_blank">GitHub</a><br/>
 <a rel="author" href="mailto:info@inkode.it"><img src="https://avatars.githubusercontent.com/u/64135645" alt="INKODE soc coop" style={styleSquared}/></a>
 </p>
 </>
