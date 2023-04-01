@@ -13,7 +13,7 @@ const DataPolicyPage = () => {
     <h1>Data policy</h1>
 </p>
 <p>
-    La piattaforma web denominata <i>“Piattaforma proiezioni climatiche per il Nord-Est”</i>, accessibile dal link pubblico <a target="_blank" rel="noopener noreferrer" href="https://clima./"><u>https://clima.</u></a><a target="_blank" rel="noopener noreferrer" href="https://clima.arpa.veneto.it/"><u>arpa.veneto.it/</u></a> è installata su infrastruttura di ARPAV, ubicata nella sede di Teolo (PD).&nbsp;
+    La piattaforma web denominata <i>“Piattaforma proiezioni climatiche per il Nord-Est”</i>, accessibile dal link pubblico <a target="_blank" rel="noopener noreferrer" href="https://clima.arpa.veneto.it/"><u>https://clima.arpa.veneto.it</u></a> è installata su infrastruttura di ARPAV, ubicata nella sede di Teolo (PD).&nbsp;
 </p>
 
 <p>
