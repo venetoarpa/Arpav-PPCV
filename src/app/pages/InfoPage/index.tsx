@@ -324,8 +324,12 @@ tr:nth-child(even) {
     <p><a href="https://github.com/venetoarpa/Arpav-PPCV-backend/wiki" target="_blank">Manuale d‘uso della Piattaforma</a></p>
 <p>Indirizzo per informazioni e segnalazioni: <a href="mailto:cmt.rete@arpa.veneto.it" target="_blank"><u>cmt.rete@arpa.veneto.it</u></a></p>
 
-            <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licenza Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribuzione - Non commerciale - Condividi allo stesso modo 4.0 Internazionale</a>
             ` }} />
+
+<p>
+Software progettato e sviluppato da <a rel="author" href="mailto:info@inkode.it">INKODE soc coop</a>, codice sorgente disponibile su <a href="https://github.com/venetoarpa/Arpav-PPCV" target="_blank">GitHub</a><br/>
+<a rel="author" href="mailto:info@inkode.it"><img src="https://avatars.githubusercontent.com/u/64135645" alt="INKODE soc coop" style={styleSquared}/></a>
+</p>
 </>
     </PageContainer>
   );
