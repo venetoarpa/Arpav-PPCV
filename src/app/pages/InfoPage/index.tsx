@@ -321,7 +321,7 @@ tr:nth-child(even) {
 
 <h3>Link utili</h3>
     <p><a href="/PPCNE_approfondimento.pdf" target="_blank">Pdf di approfondimento PPCNE</a></p>
-    <p><a href="https://github.com/venetoarpa/Arpav-PPCV-backend/wiki" target="_blank">Manuale d‘uso della Piattaforma</a></p>
+    <p><a href="https://github.com/venetoarpa/Arpav-PPCV-backend/wiki/Manuale-utente" target="_blank">Manuale d‘uso della Piattaforma</a></p>
 <p>Indirizzo per informazioni e segnalazioni: <a href="mailto:cmt.rete@arpa.veneto.it" target="_blank"><u>cmt.rete@arpa.veneto.it</u></a></p>
 
             ` }} />
