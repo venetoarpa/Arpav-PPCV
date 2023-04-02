@@ -1,8 +1,8 @@
 {
   "name": "PPCV-frontend",
   "version": "0.1.0",
-  "license": "MIT",
-  "author": "Giorgio Resci - INKODE SOC COOP <giorgio@inkode.it> (https://inkode.it/)",
+  "license": "CC-BY-4.0",
+  "author": "Giorgio Resci - INKODE SOC COOP <info@inkode.it> (https://inkode.it/)",
   "private": false,
   "dependencies": {
     "@emotion/react": "11.10.4",
