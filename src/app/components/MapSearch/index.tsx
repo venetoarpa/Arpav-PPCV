@@ -105,6 +105,11 @@ export const MapSearch: React.FunctionComponent<
     <Box className={className} sx={MapSearchContainerStyle}>
       <Box component="form" sx={MapSearchFirstRowStyle}>
         <Autocomplete
+          onKeyPress={(e) => {
+            if(e.key === 'Enter') {
+              e.preventDefault();
+            }
+          }}
           size={'small'}
           // disablePortal
           options={cities}
