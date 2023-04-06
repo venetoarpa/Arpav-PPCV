@@ -51,8 +51,7 @@ const InfoPage = () => {
                                                                               alt={'Regione Veneto'}/></a>
           </Grid>
         </Grid>
-      <div>
-        </div>
+
         <div dangerouslySetInnerHTML={{ __html: `
 
 

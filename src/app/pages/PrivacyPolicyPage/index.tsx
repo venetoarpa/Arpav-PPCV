@@ -1,10 +1,10 @@
-import {Typography} from "@mui/material";
 import PageContainer from "../../components/Modals/PageContainer";
 
 const PrivacyPolicyPage = () => {
 
   return (
     <PageContainer>
+      <div style={{maxWidth: '70vw'}}>
       <h1 style={{textAlign: 'center'}}>
         Informativa Privacy
       </h1>
@@ -23,19 +23,19 @@ const PrivacyPolicyPage = () => {
       Ai sensi di quanto previsto dal GDPR si precisa quanto segue:
       <br/>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Titolare del trattamento</strong> è ARPAV, nella persona del suo rappresentante legale pro tempore, il
         Direttore Generale, con sede a Padova in Via Ospedale Civile n. 24, contattabile alla seguente e-mail: <a
         href="mailto:aa@arpa.veneto.it" target="_blank">aa@arpa.veneto.it</a>.
-      </Typography>
+      </p>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Responsabile della Protezione Dati,</strong> nella persona del suo rappresentante legale pro tempore, il
         Direttore Generale, con sede a Padova in Via Ospedale Civile n. 24, contattabile alla seguente e-mail: <a
         href="mailto:aa@arpa.veneto.it" target="_blank">aa@arpa.veneto.it</a>.
-      </Typography>
+      </p>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Dati personali trattati</strong>
         <br/>
         In seguito alla consultazione della Piattaforma possono essere trattati dati personali, raccolti
@@ -87,27 +87,27 @@ const PrivacyPolicyPage = () => {
             consenso degli utenti.
           </li>
         </ul>
-      </Typography>
+      </p>
       <br/>
 
-      <Typography variant="body1">
+      <p>
         <strong>Base giuridica</strong>
         <br/>
         I dati personali sono trattati da ARPAV, ex art.6, par.1, lett. e) del GDPR,
         nell'esecuzione dei propri compiti di interesse pubblico o comunque connessi all'esercizio dei propri pubblici
         poteri, di cui è investita dalla propria legge istitutiva (L.R. n. 32/1996).
-      </Typography>
+      </p>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Finalità</strong>
         <br/>
         Il trattamento è finalizzato ad assicurare agli utenti, cittadini e portatori
         d’interesse, una navigazione sicura ed efficiente all’interno della Piattaforma, con l’obiettivo di mettere loro
         a disposizione dati e strumenti operativi idonei a fare comprendere gli scenari dei futuri cambiamenti climatici
         nell’ambito del territorio del Nord-Est Italia.
-      </Typography>
+      </p>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Modalità di trattamento</strong>
         <br/>
         Il trattamento è improntato ai principi di correttezza, liceità e
@@ -118,18 +118,18 @@ const PrivacyPolicyPage = () => {
         raccolti presso l’interessato, il loro conferimento è obbligatorio e il loro trattamento è effettuato in modo da
         garantirne sicurezza e riservatezza, mediante mezzi cartacei idonei, adottando misure di sicurezza tecniche e
         organizzative, atte a ridurre il rischio di perdita, uso non corretto, accesso non autorizzato.
-      </Typography>
+      </p>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Periodo di conservazione</strong>
         <br/>
         I dati personali saranno conservati dal Titolare per il periodo
         strettamente necessario al perseguimento delle finalità sopra esposte. I dati personali per i quali non vi sia
         più un presupposto giuridico per la relativa conservazione verranno anonimizzati irreversibilmente o distrutti
         in modo sicuro.
-      </Typography>
+      </p>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Diritti dell’interessato</strong>
         <br/>
         L’interessato può esercitare, ricorrendone i presupposti, i diritti
@@ -140,13 +140,13 @@ const PrivacyPolicyPage = () => {
         • limitazione del trattamento;<br/>
         • opposizione;<br/>
         inviando una richiesta alla mail: <a href="mailto:protocollo@arpa.veneto.it"
-                                             target="_blank">protocollo@arpa.veneto.it</a> protocollo@arpa.veneto.it o
+                                             target="_blank">protocollo@arpa.veneto.it</a> o
         alla PEC <a href="mailto:protocollo@pec.arpav.it" target="_blank">protocollo@pec.arpav.it</a>.
         <br/>Nel caso in cui venga esercitato uno dei summenzionati diritti, sarà onere del Titolare verificare che
         l’interessato sia legittimato e fornire riscontro entro 30 gg. dalla richiesta.
-      </Typography>
+      </p>
       <br/>
-      <Typography variant="body1">
+      <p>
         <strong>Reclamo</strong>
         <br/>
         Gli interessati, che ritengono che il trattamento dei dati personali a loro riferiti
@@ -156,8 +156,8 @@ const PrivacyPolicyPage = () => {
         target="_blank">https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/4535524</a>, o adire alle
         competenti sedi giudiziarie, ex art. 79 del GDPR.
 
-      </Typography>
-
+      </p>
+    </div>
     </PageContainer>
   );
 }
