@@ -5,7 +5,7 @@ export const DownloadMap = ({mapBounds, downLoadBounds}) => {
   return (
     <MapContainer
       center={[45.9,12.45]}
-      zoom={7}
+      zoom={6}
       maxZoom={14}
       style={{ height: '320px', width: '100%', minWidth: '320px' }}>
       <TileLayer

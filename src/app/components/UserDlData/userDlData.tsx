@@ -7,7 +7,7 @@ import {
   TextField as TextFieldMui,
   useMediaQuery,
   AutocompleteRenderInputParams,
-  Link
+  Link, Typography
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import MuiTextField from '@mui/material/TextField';
@@ -204,6 +204,9 @@ const UserDlData = (props: UserDlDataProps) => {
                   />
                 </Field>
               </Box>
+            </Box>
+            <Box sx={FieldContainerStyle}>
+            <Typography variant={'body1'}>{t('app.map.downloadDataDialog.required')}<br/></Typography>
             </Box>
             <Box sx={FieldContainerStyle}>
               <MuiTextField

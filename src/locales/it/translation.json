@@ -26,6 +26,7 @@
   "app.map.downloadDataDialog.user.private": "Privato",
   "app.map.downloadDataDialog.user.membership": "Istituzione/Azienda di appartenenza",
   "app.map.downloadDataDialog.user.aoi": "Comune di interesse",
+  "app.map.downloadDataDialog.required": "* Dati obbligatori",
   "app.map.downloadDataDialog.user.goal": "* Motivo",
   "app.map.downloadDataDialog.user.study": "Motivi di studio/ricerca",
   "app.map.downloadDataDialog.user.commercial": "Motivi commerciali",
