@@ -37,6 +37,7 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
   const [downloadDisabled, setDownloadDisabled] = React.useState(true);
 
   const [loader, setLoader] = React.useState(false);
+  const [downloadUrl, setDownloadUrl] = React.useState('');
 
   //@ts-ignore
   const {selected_map} = useSelector((state) => state?.map as MapState);
@@ -47,39 +48,15 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
 
   const handleChange = (values) => {
     dataSet.current = {...dataSet.current, ...values};
-  }
-
-  const [downloadUrl, setDownloadUrl] = React.useState('');
-
-  useEffect(() => {
     const params = {
       id: parseInt(selected_map.id),
       ...dataSet.current,
+      ...values
     }
     const url = `${API_URL}/maps/ncss/netcdf/?${(new URLSearchParams(params)).toString()}`;
     setDownloadUrl(url);
-  }, [dataSet.current, selected_map.id, downloadDisabled]);
+  }
 
-  // const datasetDownload = () => {
-  //
-  //   const params = {
-  //     id: parseInt(selected_map.id),
-  //     ...dataSet.current,
-  //   }
-  //   try {
-  //     setLoader(true);
-  //     api.getNetcdf(params).then((response) => {
-  //       saveAs(response, `${selected_map.path.replace('/','')}`);
-  //     }).catch(err => {
-  //         console.log(err);
-  //         dispatch(actions.actions.genericError({error: 'app.error.dlNetcdf'}));
-  //     }).finally(() => {
-  //       setLoader(false);
-  //     });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
 
   return (
     <Modal
@@ -132,15 +109,6 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
         <Grid xs={1}></Grid>
         <Grid xs={0} def={1}></Grid>
         <Grid xs={28} def={11} sx={DLButtonContStyle}>
-          {/*<Button*/}
-          {/*  disabled={downloadDisabled || loader}*/}
-          {/*  color={'primary'}*/}
-          {/*  variant={'contained'}*/}
-          {/*  startIcon={loader ? <CircularProgress size={20} /> : <FileDownloadIcon />}*/}
-          {/*  onClick={()=>{datasetDownload()}}*/}
-          {/*>*/}
-          {/*  {t('app.map.downloadDataDialog.DLNetCDF')}*/}
-          {/*</Button>*/}
           <Button
             color={'primary'}
             variant={'contained'}
