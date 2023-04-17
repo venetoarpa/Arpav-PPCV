@@ -312,7 +312,7 @@ const TSDataContainer = (props: TSDataContainerProps) => {
         .filter(
           x =>
             !allIds.includes(
-              `${x.dataset.scenario_id} - ${x.dataset.forecast_model_id}`,
+              `${findParamName(x.dataset.scenario_id, 'scenarios')} - ${findParamName(x.dataset.forecast_model_id, 'forecast_models')}`
             ),
         )
         .map(x => x.dataset.id),
