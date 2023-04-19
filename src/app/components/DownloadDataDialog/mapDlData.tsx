@@ -173,7 +173,7 @@ const MapDlData = (props: MapDlDataProps) => {
               }}
               InputProps={{
                   inputProps: {
-                      max: mapBounds[1][1], min: mapBounds[0][1], step: 0.001,
+                      max: mapBounds[1][1], min: mapBounds[0][1], step: 0.05,
                   }
               }}
             />
@@ -191,7 +191,7 @@ const MapDlData = (props: MapDlDataProps) => {
                 }}
                 InputProps={{
                   inputProps: {
-                    max: mapBounds[1][0], min: mapBounds[0][0], step: 0.001
+                    max: mapBounds[1][0], min: mapBounds[0][0], step: 0.05
                   }
                 }}
               />
@@ -208,7 +208,7 @@ const MapDlData = (props: MapDlDataProps) => {
                 }}
                 InputProps={{
                   inputProps: {
-                    max: mapBounds[1][0], min: mapBounds[0][0], step: 0.001
+                    max: mapBounds[1][0], min: mapBounds[0][0], step: 0.05
                   }
                 }}
               />
@@ -226,7 +226,7 @@ const MapDlData = (props: MapDlDataProps) => {
               }}
               InputProps={{
                   inputProps: {
-                      max: mapBounds[1][1], min: mapBounds[0][1], step: 0.001
+                      max: mapBounds[1][1], min: mapBounds[0][1], step: 0.05
                   }
               }}
             />
