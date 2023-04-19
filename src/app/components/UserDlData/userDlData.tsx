@@ -42,7 +42,7 @@ const UserDlData = (props: UserDlDataProps) => {
         place: '',
         // reason: Reason.Study,
         other_reason: '',
-        accept_disclaimer: null,
+        accept_disclaimer: false,
     };
 
   const { t } = useTranslation();
