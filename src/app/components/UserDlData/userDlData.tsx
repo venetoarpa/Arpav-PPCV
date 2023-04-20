@@ -77,7 +77,9 @@ const UserDlData = (props: UserDlDataProps) => {
     }
     if(typeof localStorage.getItem("user_form") === 'string') {
       const localValues = JSON.parse(localStorage.getItem("user_form") as string);
-      values = {...localValues, ...values};
+      // @ts-ignore
+      const accept_disclaimer = typeof values.accept_disclaimer === 'boolean' ? values.accept_disclaimer : localValues.accept_disclaimer === true;
+      values = {...localValues, ...values, accept_disclaimer };
     }
     localStorage.setItem("user_form", JSON.stringify(values));
     onChange(values);
