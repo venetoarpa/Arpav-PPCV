@@ -35,7 +35,7 @@
   "app.map.downloadDataDialog.user.disclaimer": "Avvertenze",
   "app.map.downloadDataDialog.user.disclaimerRead": "* Presa visione",
   "app.map.downloadDataDialog.user.disclaimerReadError": "Presa visione non selezionata",
-  "app.map.downloadDataDialog.user.disclaimerText": "Avvertenze per serie temporali:\nSi tratta di proiezioni climatiche e non di previsioni a lungo termine.\n Il valore annuale ha validità esclusivamente in un contesto di trend trentennale. \nLe simulazioni modellistiche sono caratterizzate da incertezza, che è  dovuta essenzialmente allo scenario di emissione, rappresentazione dei processi fisici e variabilità naturale del sistema climatico.\n\nAvvertenze per mappe trentennali:\nSi tratta di proiezioni climatiche e non di previsioni a lungo termine. \nLe simulazioni modellistiche sono caratterizzate da incertezza, che è  dovuta essenzialmente allo scenario di emissione, rappresentazione dei processi fisici e variabilità naturale del sistema climatico.",
+  "app.map.downloadDataDialog.user.disclaimerText": "Si tratta di proiezioni climatiche e non di previsioni a lungo termine.\nIl valore annuale ha validità esclusivamente in un contesto di trend trentennale.\nLe simulazioni modellistiche sono caratterizzate da incertezza, che è  dovuta essenzialmente allo scenario di emissione, rappresentazione dei processi fisici e variabilità naturale del sistema climatico.",
   "app.map.downloadDataDialog.user.fieldRequired": "È necessario inserire questo campo",
   "app.map.downloadDataDialog.user.fieldError": "Il campo non è valido.",
   "app.map.downloadDataDialog.map.unit": "UNITÀ DI MISURA",
