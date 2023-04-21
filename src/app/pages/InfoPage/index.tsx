@@ -83,7 +83,7 @@ tr:nth-child(even) {
 
 <h1>Il cambiamento climatico</h1>
 <p>
-    Le attività umane influiscono sul clima: l’aumento della concentrazione di gas serra e i conseguenti cambiamenti osservati dei valori climatici sul lungo periodo e delle condizioni meteo estreme in ogni parte del mondo ne sono evidenti segnali. Nell’area del Mediterraneo, in particolare, le condizioni che alterano l’equilibrio climatico più severe, come l’aumento delle temperature e l’innalzamento del livello medio del mare, e la sua vulnerabilità accentuata rispetto ad altre regioni, portano a rischi climatici più gravi.
+    Le attività umane influiscono sul clima: l’aumento della concentrazione di gas serra e i conseguenti cambiamenti osservati dei valori climatici medi sul lungo periodo e degli estremi climatici in ogni parte del mondo ne sono evidenti segnali. Nell’area del Mediterraneo, in particolare, le condizioni che alterano l’equilibrio climatico più severe, come l’aumento delle temperature e l’innalzamento del livello medio del mare, e la sua vulnerabilità accentuata rispetto ad altre regioni, portano a rischi climatici più gravi.
 </p>
 <p>
     Una valutazione del cambiamento climatico e della sua variabilità a scala regionale diviene quindi cruciale per stimarne i potenziali impatti in futuro, per lo sviluppo di strategie di adattamento (processo di adeguamento al clima attuale o atteso e ai suoi effetti, al fine di limitare i danni o sfruttare le opportunità favorevoli) e per valutare azioni di mitigazione (qualsiasi intervento umano che riduca le emissioni o rafforzi le fonti di assorbimento dei gas serra).
