@@ -30,9 +30,9 @@ const PrivacyPolicyPage = () => {
       </p>
       <br/>
       <p>
-        <strong>Responsabile della Protezione Dati,</strong> nella persona del suo rappresentante legale pro tempore, il
-        Direttore Generale, con sede a Padova in Via Ospedale Civile n. 24, contattabile alla seguente e-mail: <a
-        href="mailto:aa@arpa.veneto.it" target="_blank">aa@arpa.veneto.it</a>.
+        <strong>Responsabile della Protezione dei dati,</strong> al quale é possibile rivolgersi per gli aspetti inerenti al trattamento dei dati personali,
+        è contattabile al seguente indirizzo e-mail: <a
+        href="mailto:dpo@arpa.veneto.it" target="_blank">dpo@arpa.veneto.it</a>.
       </p>
       <br/>
       <p>
