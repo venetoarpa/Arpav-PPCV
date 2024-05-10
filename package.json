@@ -4,6 +4,7 @@
   "license": "CC-BY-SA-3.0",
   "author": "Giorgio Resci - INKODE SOC COOP <info@inkode.it> (https://inkode.it/)",
   "private": false,
+  "homepage": "https://geobeyond.github.io/Arpav-PPCV/",
   "dependencies": {
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
@@ -29,8 +30,10 @@
     "@types/webpack": "5.28.0",
     "@types/webpack-env": "1.18.0",
     "axios": "1.1.3",
+    "bootstrap-italia": "2.8.4",
     "chalk": "4.1.2",
     "cross-env": "7.0.3",
+    "design-react-kit": "5.0.1",
     "echarts": "^5.0.2",
     "echarts-for-react": "3.0.2",
     "eslint-config-prettier": "8.5.0",
@@ -39,6 +42,7 @@
     "fontfaceobserver": "2.3.0",
     "formik": "2.2.9",
     "formik-mui": "5.0.0-alpha.0",
+    "gh-pages": "6.1.1",
     "husky": "8.0.1",
     "i18next": "21.9.2",
     "i18next-browser-languagedetector": "6.1.5",
@@ -82,6 +86,9 @@
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-processor-styled-components": "1.10.0",
     "ts-node": "10.9.1",
+    "typeface-lora": "1.1.13",
+    "typeface-roboto-mono": "1.1.13",
+    "typeface-titillium-web": "1.1.13",
     "typescript": "4.6.4",
     "web-vitals": "2.1.4",
     "yup": "0.32.11"
@@ -102,7 +109,9 @@
     "cleanAndSetup": "ts-node ./internals/scripts/clean.ts",
     "prettify": "prettier --write",
     "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js",
-    "build:production": "docker build -t ppcv_frontend -f production.Dockerfile ."
+    "build:production": "docker build -t ppcv_frontend -f production.Dockerfile .",
+    "ghpredeploy": "npm run build",
+    "ghdeploy": "gh-pages -b gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
