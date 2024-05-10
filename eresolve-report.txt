@@ -1,0 +1,81 @@
+# npm resolution error report
+
+2024-04-04T10:07:56.225Z
+
+While resolving: PPCV-frontend@1.0.0
+Found: react-leaflet@4.1.0
+node_modules/react-leaflet
+  react-leaflet@"4.1.0" from the root project
+
+Could not resolve dependency:
+peer react-leaflet@"^3.0.0" from react-leaflet-vector-tile-layer@0.1.3
+node_modules/react-leaflet-vector-tile-layer
+  react-leaflet-vector-tile-layer@"0.1.3" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force, or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.
+
+Raw JSON explanation object:
+
+{
+  "code": "ERESOLVE",
+  "current": {
+    "name": "react-leaflet",
+    "version": "4.1.0",
+    "whileInstalling": {
+      "name": "PPCV-frontend",
+      "version": "1.0.0",
+      "path": "D:\\Users\\marco\\Documents\\GitHub\\Arpav-PPCV"
+    },
+    "location": "node_modules/react-leaflet",
+    "isWorkspace": false,
+    "dependents": [
+      {
+        "type": "prod",
+        "name": "react-leaflet",
+        "spec": "4.1.0",
+        "from": {
+          "location": "D:\\Users\\marco\\Documents\\GitHub\\Arpav-PPCV"
+        }
+      }
+    ]
+  },
+  "currentEdge": {
+    "type": "prod",
+    "name": "react-leaflet",
+    "spec": "4.1.0",
+    "from": {
+      "location": "D:\\Users\\marco\\Documents\\GitHub\\Arpav-PPCV"
+    }
+  },
+  "edge": {
+    "type": "peer",
+    "name": "react-leaflet",
+    "spec": "^3.0.0",
+    "error": "INVALID",
+    "from": {
+      "name": "react-leaflet-vector-tile-layer",
+      "version": "0.1.3",
+      "whileInstalling": {
+        "name": "PPCV-frontend",
+        "version": "1.0.0",
+        "path": "D:\\Users\\marco\\Documents\\GitHub\\Arpav-PPCV"
+      },
+      "location": "node_modules/react-leaflet-vector-tile-layer",
+      "isWorkspace": false,
+      "dependents": [
+        {
+          "type": "prod",
+          "name": "react-leaflet-vector-tile-layer",
+          "spec": "0.1.3",
+          "from": {
+            "location": "D:\\Users\\marco\\Documents\\GitHub\\Arpav-PPCV"
+          }
+        }
+      ]
+    }
+  },
+  "strictPeerDeps": false,
+  "force": false
+}

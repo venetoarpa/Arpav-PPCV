@@ -10,6 +10,8 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': ['error', prettierOptions],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
   },
   overrides: [
     {
