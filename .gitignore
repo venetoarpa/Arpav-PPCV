@@ -36,3 +36,5 @@ template
 /.env
 _cacache
 _locks
+_logs
+docs
