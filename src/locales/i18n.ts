@@ -7,7 +7,7 @@ import it from './it/translation.json';
 import { convertLanguageJsonToObject } from './translations';
 
 export const translationsJson = {
-    en: {
+  en: {
     translation: en,
   },
   it: {

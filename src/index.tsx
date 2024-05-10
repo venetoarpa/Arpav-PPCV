@@ -9,12 +9,15 @@ import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
 import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM, { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import FontFaceObserver from 'fontfaceobserver';
 
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
+import 'bootstrap-italia/dist/css/bootstrap-italia.min.css';
+
+import 'typeface-titillium-web';
 
 import { App } from 'app';
 
@@ -37,11 +40,10 @@ const openSansObserver = new FontFaceObserver('Inter', {});
 openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
-const {store} = configureAppStore();
+const { store } = configureAppStore();
 // console.log({store})
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container!);
 
 root.render(
   <Provider store={store}>

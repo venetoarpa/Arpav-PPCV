@@ -4,12 +4,12 @@ export const setCookie = (key: string, value: string, expireAfter: number) => {
   const expires = expireAfter;
   const cookieSecuritySettings = {
     sameSite: 'None',
-    secure: true
-  }
+    secure: true,
+  };
   Cookies.set(key, value, {
     expires,
     path: '/',
-    ...cookieSecuritySettings
+    ...cookieSecuritySettings,
   });
 };
 

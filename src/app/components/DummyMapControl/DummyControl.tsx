@@ -8,7 +8,7 @@ const ControlBase: React.FunctionComponent<{
   map: leaflet.Map;
   control: React.FunctionComponent<SimpleDisplayProps>;
 }> = props => {
-  return <props.control param1={'test1'}/>;
+  return <props.control param1={'test1'} />;
 };
 
 export interface DummyControlProps extends leaflet.ControlOptions {
@@ -27,10 +27,7 @@ export class DummyControl extends leaflet.Control {
   onAdd = (map: leaflet.Map) => {
     this._div = leaflet.DomUtil.create('div', '');
     ReactDOM.render(
-      <ControlBase
-        map={map}
-        control={this.control}
-      />,
+      <ControlBase map={map} control={this.control} />,
       this._div,
     );
     return this._div;

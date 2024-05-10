@@ -11,9 +11,7 @@ export const SimpleDisplay: React.FunctionComponent<
   const param1 = props.param1;
   return (
     <React.Fragment>
-      <small>
-        Dummy control, params: {param1}
-      </small>
+      <small>Dummy control, params: {param1}</small>
     </React.Fragment>
   );
 };

@@ -4,7 +4,7 @@ import { P } from './P';
 // import { NavBar } from 'app/components/Boilerplate/NavBar';
 import { Helmet } from 'react-helmet-async';
 import { StyleConstants } from 'styles/StyleConstants';
-import {Link} from "@mui/material";
+import { Link } from '@mui/material';
 
 export function NotFoundPage() {
   return (

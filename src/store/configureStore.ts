@@ -17,7 +17,7 @@ import { createReducer } from './reducers';
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const rootReducer = createReducer();
 
@@ -41,11 +41,14 @@ export function configureAppStore() {
   const store = configureStore({
     reducer: persistedReducer,
     middleware: defaultMiddleware => {
-      return [...defaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }), ...middlewares]
+      return [
+        ...defaultMiddleware({
+          serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          },
+        }),
+        ...middlewares,
+      ];
     },
     // devTools: true,
     devTools:
@@ -55,6 +58,6 @@ export function configureAppStore() {
     enhancers,
   });
 
-  let persistor = persistStore(store)
+  let persistor = persistStore(store);
   return { store, persistor };
 }

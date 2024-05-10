@@ -1,59 +1,58 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {IconButton, Modal, Typography} from '@mui/material';
+import { IconButton, Modal, Typography } from '@mui/material';
 import ExitIcon from '@mui/icons-material/HighlightOff';
 import Grid from '@mui/material/Unstable_Grid2';
-import {LatLng} from "leaflet";
+import { LatLng } from 'leaflet';
 import {
   CloseIconContStyle,
   TSContainerStyle,
   TSModalStyle,
   TitleTSStyle,
-} from "./styles";
-import TSDataContainer from "./TSDataContainer";
-import {iCityItem} from "../../pages/MapPage/slice/types";
-import {DownloadForm} from "./DownloadForm";
+} from './styles';
+import TSDataContainer from './TSDataContainer';
+import { iCityItem } from '../../pages/MapPage/slice/types';
+import { DownloadForm } from './DownloadForm';
 import { selectMap } from '../../pages/MapPage/slice/selectors';
-import {useSelector} from "react-redux";
+import { useSelector } from 'react-redux';
 
 export interface TimeSeriesDialogProps {
   selectedPoint: iCityItem | null;
-  open: boolean,
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface TimeRangeProps {
-  start: string,
-  end: string,
+  start: string;
+  end: string;
 }
 
 const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
-  const {open = false, setOpen, selectedPoint} = props;
-  const latLng = selectedPoint ? new LatLng(selectedPoint.latlng.lat, selectedPoint.latlng.lng) : null;
+  const { open = false, setOpen, selectedPoint } = props;
+  const latLng = selectedPoint
+    ? new LatLng(selectedPoint.latlng.lat, selectedPoint.latlng.lng)
+    : null;
   const place = selectedPoint ? selectedPoint.name : null;
   const { timeserie } = useSelector(selectMap);
 
   const { t } = useTranslation();
 
   const ids = useRef<number[]>([]);
-  const timeRange = useRef<TimeRangeProps|null>();
+  const timeRange = useRef<TimeRangeProps | null>();
   // console.log(timeRange);
-  const setIds = (newIds) => ids.current = newIds;
-  const setTimeRange = (tr) => {
+  const setIds = newIds => (ids.current = newIds);
+  const setTimeRange = tr => {
     timeRange.current = tr;
   };
   useEffect(() => {
-    if(timeserie.length === 0) return;
+    if (timeserie.length === 0) return;
     const ts = timeserie[0].values;
-    const tr = {start:ts[0].time, end:ts[ts.length-1].time};
-    setTimeRange(tr)
+    const tr = { start: ts[0].time, end: ts[ts.length - 1].time };
+    setTimeRange(tr);
   }, [timeserie]);
 
   return (
-    <Modal
-      open={open}
-      sx={TSModalStyle}
-    >
+    <Modal open={open} sx={TSModalStyle}>
       <Grid
         container
         rowSpacing={0}
@@ -61,7 +60,7 @@ const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
         columns={{ xs: 24, def: 24 }}
         sx={TSContainerStyle}
       >
-        <Grid xs={1}/>
+        <Grid xs={1} />
         <Grid xs={22}>
           <Typography variant={'h6'} sx={TitleTSStyle}>
             {t('app.header.acronymMeaning')}
@@ -77,17 +76,24 @@ const TimeSeriesDialog = (props: TimeSeriesDialogProps) => {
             <ExitIcon fontSize={'large'} />
           </IconButton>
         </Grid>
-        <Grid xs={1}/>
+        <Grid xs={1} />
         <Grid xs={22}>
-          {latLng && (<TSDataContainer latLng={latLng} setIds={setIds} setTimeRange={setTimeRange} place={place}/>)}
+          {latLng && (
+            <TSDataContainer
+              latLng={latLng}
+              setIds={setIds}
+              setTimeRange={setTimeRange}
+              place={place}
+            />
+          )}
         </Grid>
-        <Grid xs={1}/>
+        <Grid xs={1} />
         <DownloadForm
           setOpen={setOpen}
           latLng={latLng}
           ids={ids}
           timeRange={timeRange}
-          />
+        />
       </Grid>
     </Modal>
   );

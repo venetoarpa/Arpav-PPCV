@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Modal, IconButton, Button, Typography} from '@mui/material';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Modal, IconButton, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import ExitIcon from '@mui/icons-material/HighlightOff';
 // import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -10,14 +10,16 @@ import {
   CloseIconContStyle,
   DLButtonContStyle,
   DownloadContainerStyle,
-  DownloadModalStyle, MapUserContainerStyle, TitleDownloadStyle
-} from "./styles";
-import MapDlData from "./mapDlData";
-import UserDlData from "../UserDlData/userDlData";
-import {RequestApi} from "../../Services";
+  DownloadModalStyle,
+  MapUserContainerStyle,
+  TitleDownloadStyle,
+} from './styles';
+import MapDlData from './mapDlData';
+import UserDlData from '../UserDlData/userDlData';
+import { RequestApi } from '../../Services';
 import { saveAs } from 'file-saver';
-import {useMapSlice} from "../../pages/MapPage/slice";
-import { API_URL } from "../../../utils/constants";
+import { useMapSlice } from '../../pages/MapPage/slice';
+import { API_URL } from '../../../utils/constants';
 
 export interface DownloadDataDialogProps {
   open: boolean;
@@ -40,29 +42,27 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
   const [downloadUrl, setDownloadUrl] = React.useState('');
 
   //@ts-ignore
-  const {selected_map} = useSelector((state) => state?.map as MapState);
+  const { selected_map } = useSelector(state => state?.map as MapState);
 
   const userValidityHandleChange = (isValid: boolean) => {
     setDownloadDisabled(!isValid);
-  }
+  };
 
-  const handleChange = (values) => {
-    dataSet.current = {...dataSet.current, ...values};
+  const handleChange = values => {
+    dataSet.current = { ...dataSet.current, ...values };
     const params = {
       id: parseInt(selected_map.id),
       ...dataSet.current,
-      ...values
-    }
-    const url = `${API_URL}/maps/ncss/netcdf/?${(new URLSearchParams(params)).toString()}`;
+      ...values,
+    };
+    const url = `${API_URL}/maps/ncss/netcdf/?${new URLSearchParams(
+      params,
+    ).toString()}`;
     setDownloadUrl(url);
-  }
-
+  };
 
   return (
-    <Modal
-      open={open}
-      sx={DownloadModalStyle}
-    >
+    <Modal open={open} sx={DownloadModalStyle}>
       <Grid
         container
         rowSpacing={0}
@@ -81,7 +81,7 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
             color={'secondary'}
             aria-label={t('app.common.close')}
             component={'label'}
-            onClick={()=>setOpen(false)}
+            onClick={() => setOpen(false)}
           >
             <ExitIcon fontSize={'large'} />
           </IconButton>
@@ -123,7 +123,7 @@ const DownloadDataDialog = (props: DownloadDataDialogProps) => {
           <Button
             variant={'contained'}
             color={'secondary'}
-            onClick={()=>setOpen(false)}
+            onClick={() => setOpen(false)}
           >
             {t('app.common.close')}
           </Button>

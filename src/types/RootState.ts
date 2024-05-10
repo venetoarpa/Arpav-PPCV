@@ -1,6 +1,6 @@
 // import { GithubRepoFormState } from 'app/pages/HomePage/Features/GithubRepoForm/slice/types';
 import { ThemeState } from 'styles/theme/slice/types';
-import {MapState} from "../app/pages/MapPage/slice/types";
+import { MapState } from '../app/pages/MapPage/slice/types';
 import { IndicatorSelectionState } from 'app/pages/IndicatorSelector/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 

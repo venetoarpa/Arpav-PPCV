@@ -14,7 +14,8 @@ import {
   MenuItem,
   Select,
   Typography,
-  useMediaQuery, InputLabel,
+  useMediaQuery,
+  InputLabel,
 } from '@mui/material';
 import {
   MultiRadioSelectMenuStyle,
@@ -24,7 +25,9 @@ import {
   SelectStyle,
   GroupLabelStyle,
   DividerStyle,
-  IconBoxStyle, ExitContainerStyle, ExitIconStyle,
+  IconBoxStyle,
+  ExitContainerStyle,
+  ExitIconStyle,
 } from './styles';
 import { SxProps } from '@mui/system';
 
@@ -59,11 +62,11 @@ export interface RowMenuProps {
   needsSelection: Boolean;
   key: string;
   groupName: string;
-  items: IItem[],
+  items: IItem[];
 }
 
 export interface ColumnMenuProps {
-  rows: RowMenuProps[]
+  rows: RowMenuProps[];
 }
 
 // Groups in the value param have to be in the same order
@@ -84,7 +87,7 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
   const sx = props.sx;
   const menuSx = props.menuSx;
   const label = props.label;
-  const className = props.className ?? ''
+  const className = props.className ?? '';
   const MobileIcon = () => props.mobileIcon ?? <></>;
 
   const theme = useTheme();
@@ -94,27 +97,45 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
 
   const handleChangeRadioGroup = (
     event: React.ChangeEvent<HTMLInputElement>,
-    key: string
+    key: string,
   ) => {
     handleChange(key, event.target.value);
   };
-  const values = valueSet.map(({rows}) => rows.map(({items}) => items.find(x => x.selected)?.id)).flat().filter(x => x);
-  const renderSelectedValue = () => valueSet.map(({rows}) => rows.map(({items}) => items.find(x => x.selected)?.name)).flat().filter(x => x).join(' - ');
+  const values = valueSet
+    .map(({ rows }) => rows.map(({ items }) => items.find(x => x.selected)?.id))
+    .flat()
+    .filter(x => x);
+  const renderSelectedValue = () =>
+    valueSet
+      .map(({ rows }) =>
+        rows.map(({ items }) => items.find(x => x.selected)?.name),
+      )
+      .flat()
+      .filter(x => x)
+      .join(' - ');
 
   return (
     <FormControl sx={sx} className={className} hiddenLabel={false}>
-    {/*<FormControl sx={{...SelectContainerStyle,...sx}}>*/}
+      {/*<FormControl sx={{...SelectContainerStyle,...sx}}>*/}
       <Select
         aria-label={label}
         aria-hidden={false}
         multiple
         value={values}
-        renderValue={() => isMobile ? <Box sx={IconBoxStyle} aria-label={label}><MobileIcon /></Box> : renderSelectedValue()}
+        renderValue={() =>
+          isMobile ? (
+            <Box sx={IconBoxStyle} aria-label={label}>
+              <MobileIcon />
+            </Box>
+          ) : (
+            renderSelectedValue()
+          )
+        }
         open={isOpen}
-        onOpen={()=>setIsOpen(true)}
-        onClose={()=>setIsOpen(false)}
+        onOpen={() => setIsOpen(true)}
+        onClose={() => setIsOpen(false)}
         sx={SelectStyle}
-        className={`MultiRadioSelect ${isOpen?'MultiRadioSelect-open':''}`}
+        className={`MultiRadioSelect ${isOpen ? 'MultiRadioSelect-open' : ''}`}
         MenuProps={{ sx: menuSx }}
       >
         <Box sx={ExitContainerStyle}>
@@ -122,22 +143,25 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
             sx={ExitIconStyle}
             color={'default'}
             component={'label'}
-            onClick={()=>setIsOpen(false)}
+            onClick={() => setIsOpen(false)}
             aria-label={`chiudi ${label}`}
           >
-            <ExitIcon fontSize={'medium'}/>
+            <ExitIcon fontSize={'medium'} />
           </IconButton>
         </Box>
         {/*@ts-ignore*/}
         <Box className={'MultiRadioSelectMenu'} sx={MultiRadioSelectMenuStyle}>
-          {valueSet.map(({rows}, cIndex) => (
+          {valueSet.map(({ rows }, cIndex) => (
             <Box
               className={'MultiRadioSelectMenuColumn'}
               sx={ColumnMenuStyle}
               key={cIndex}
             >
               {rows.map(row => (
-                <div key={row.key} className={`${row.needsSelection ? 'NeedsSelection' : ''}`}>
+                <div
+                  key={row.key}
+                  className={`${row.needsSelection ? 'NeedsSelection' : ''}`}
+                >
                   {row.groupName && (
                     <>
                       <Typography
@@ -152,13 +176,21 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
                   <RadioGroup
                     sx={GroupMenuStyle}
                     aria-labelledby={`${row.key}-radio-group-label`}
-                    onChange={(event) => handleChangeRadioGroup(event, row.key)}
+                    onChange={event => handleChangeRadioGroup(event, row.key)}
                   >
                     {row.items.map(item => {
                       return (
-                        <MenuItem key={item.id} disableGutters disabled={item.disabled}>
+                        <MenuItem
+                          key={item.id}
+                          disableGutters
+                          disabled={item.disabled}
+                        >
                           <FormControlLabel
-                            className={`MultiRadioSelectMenuItem ${item.selected?'MultiRadioSelectMenuItem-selected':''}`}
+                            className={`MultiRadioSelectMenuItem ${
+                              item.selected
+                                ? 'MultiRadioSelectMenuItem-selected'
+                                : ''
+                            }`}
                             //See Sorting fields note.
                             value={item.id}
                             control={<Radio />}

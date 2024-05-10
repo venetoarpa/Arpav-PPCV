@@ -15,8 +15,9 @@ import { lightTheme, darkTheme } from './utils/theme';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 
 import { MapPage } from './pages/MapPage/Loadable';
+import IndexPage from './pages/IndexPage';
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ModalRouter from './components/Modals';
 
 export function App() {
@@ -41,7 +42,26 @@ export function App() {
           >
             <meta name="description" content={t('app.header.acronymMeaning')} />
           </Helmet>
-          <MapPage />
+          <Routes>
+            <Route path="/" element={<IndexPage />} />
+            <Route path="/barometer" element={<IndexPage />} />
+            <Route
+              path="/fs"
+              element={<MapPage map_data="future" map_mode="simple" />}
+            />
+            <Route
+              path="/ps"
+              element={<MapPage map_data="past" map_mode="simple" />}
+            />
+            <Route
+              path="/fa"
+              element={<MapPage map_data="future" map_mode="advanced" />}
+            />
+            <Route
+              path="/pa"
+              element={<MapPage map_data="past" map_mode="advanced" />}
+            />
+          </Routes>
           {/*<Routes>*/}
           {/*  <Route path="*" element={<MapPage />} />*/}
           {/*</Routes>*/}

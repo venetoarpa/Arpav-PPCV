@@ -1,7 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { MapState } from '../../pages/MapPage/slice/types';
-import {Box, Typography, Slider, Skeleton, Input as MuiInput, TextField, Button} from '@mui/material';
+import {
+  Box,
+  Typography,
+  Slider,
+  Skeleton,
+  Input as MuiInput,
+  TextField,
+  Button,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {
   MapDataSectionTextStyle,
@@ -10,23 +18,27 @@ import {
   FieldContainerStyle,
   ImgButtonContainerStyle,
   ImgDoubleButtonContainerStyle,
-  MapDataContainerStyle, SliderContainerStyle, InputYearStyle,
+  MapDataContainerStyle,
+  SliderContainerStyle,
+  InputYearStyle,
 } from './styles';
-import {DownloadMap} from "./DownloadMap";
-import {roundTo4} from "../../../utils/json_manipulations";
+import { DownloadMap } from './DownloadMap';
+import { roundTo4 } from '../../../utils/json_manipulations';
 
 export interface MapDlDataProps {
   // getMapImg: Function;
-  onChange?: (values: any)  => void;
+  onChange?: (values: any) => void;
 }
 
 const MapDlData = (props: MapDlDataProps) => {
-  const onChange = props.onChange ?? (()=>{});
+  const onChange = props.onChange ?? (() => {});
 
   const { t } = useTranslation();
 
   //@ts-ignore
-  const {selected_map, forecast_parameters, timeserie} = useSelector((state) => state?.map as MapState);
+  const { selected_map, forecast_parameters, timeserie } = useSelector(
+    state => (state as any)?.map as MapState,
+  );
 
   const mapBounds = [
     [selected_map.bbox[1][1], selected_map.bbox[0][1]],
@@ -37,15 +49,17 @@ const MapDlData = (props: MapDlDataProps) => {
 
   const resetBounds = () => {
     setDownLoadBounds(mapBounds);
-  }
+  };
 
-  const changeBounds = (bounds) => {
+  const changeBounds = bounds => {
     setDownLoadBounds(bounds);
-    JSON.stringify(bounds) !== JSON.stringify(mapBounds) ? setShowReset(true) : setShowReset(false)
-  }
+    JSON.stringify(bounds) !== JSON.stringify(mapBounds)
+      ? setShowReset(true)
+      : setShowReset(false);
+  };
 
-  const times = timeserie ? timeserie[0].values.map((v) => v.time) : [];
-  const timeKeys = [...times.keys()]
+  const times = timeserie ? timeserie[0].values.map(v => v.time) : [];
+  const timeKeys = [...times.keys()];
 
   const [years, setYears] = React.useState<number[]>([0, timeKeys.length - 1]);
 
@@ -58,32 +72,33 @@ const MapDlData = (props: MapDlDataProps) => {
   const findValueName = (key: string, listKey: string) => {
     const id = selected_map[key];
     let name = '';
-    if(id)
-      name = forecast_parameters[listKey]?.find((item)=>item.id===id)?.name;
-    return name??'';
-  }
+    if (id)
+      name = forecast_parameters[listKey]?.find(item => item.id === id)?.name;
+    return name ?? '';
+  };
 
-  const joinNames = (names: string[]) => names.filter((name=>name)).join(' - ');
+  const joinNames = (names: string[]) => names.filter(name => name).join(' - ');
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const values = {};
     values['time_start'] = times[years[0]];
     values['time_end'] = times[years[1]];
     onChange(values);
-  },[years]);
+  }, [years]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const values = {};
     values['north'] = parseFloat(downLoadBounds[1][0]);
     values['south'] = parseFloat(downLoadBounds[0][0]);
     values['east'] = parseFloat(downLoadBounds[1][1]);
     values['west'] = parseFloat(downLoadBounds[0][1]);
     onChange(values);
-  },[downLoadBounds]);
+  }, [downLoadBounds]);
 
   return (
     <Box sx={MapDataContainerStyle}>
-      <Box>{/*Column1*/}
+      <Box>
+        {/*Column1*/}
         <Box sx={FieldContainerStyle}>
           <Typography variant={'h6'} sx={MapDataSectionTextStyle}>
             {t('app.map.menuBar.indicator')}
@@ -99,8 +114,8 @@ const MapDlData = (props: MapDlDataProps) => {
           <Typography variant={'body1'} sx={MapDataValueTextStyle}>
             {joinNames([
               findValueName('forecast_model', 'forecast_models'),
-              findValueName('scenario', 'scenarios')
-              ])}
+              findValueName('scenario', 'scenarios'),
+            ])}
           </Typography>
         </Box>
         <Box sx={FieldContainerStyle}>
@@ -111,7 +126,7 @@ const MapDlData = (props: MapDlDataProps) => {
             {joinNames([
               findValueName('data_series', 'data_series'),
               findValueName('value_type', 'value_types'),
-              findValueName('time_window', 'time_windows')
+              findValueName('time_window', 'time_windows'),
             ])}
           </Typography>
         </Box>
@@ -149,32 +164,38 @@ const MapDlData = (props: MapDlDataProps) => {
               max={times.length - 1}
               value={years}
               onChange={yearsHandleChange}
-              valueLabelFormat={(index) => times[index].substring(4, 0)}
+              valueLabelFormat={index => times[index].substring(4, 0)}
               disableSwap
             />
             <span>{times[years[1]].substring(4, 0)}</span>
           </Box>
         </Box>
       </Box>
-      <Box>{/*Column2*/}
+      <Box>
+        {/*Column2*/}
         <Box sx={FieldContainerStyle}>
-          <DownloadMap mapBounds={mapBounds} downLoadBounds={downLoadBounds}/>
+          <DownloadMap mapBounds={mapBounds} downLoadBounds={downLoadBounds} />
           <Box sx={ImgButtonContainerStyle}>
             <TextField
               id="outlined-number"
               label={t('app.map.downloadDataDialog.map.west')}
               type="number"
               value={downLoadBounds[0][1]}
-              onChange={(e) => {
+              onChange={e => {
                 changeBounds([
-                  [downLoadBounds[0][0], Number(e.target.value.replace(',','.'))],
+                  [
+                    downLoadBounds[0][0],
+                    Number(e.target.value.replace(',', '.')),
+                  ],
                   [downLoadBounds[1][0], downLoadBounds[1][1]],
                 ]);
               }}
               InputProps={{
-                  inputProps: {
-                      max: mapBounds[1][1], min: mapBounds[0][1], step: 0.001,
-                  }
+                inputProps: {
+                  max: mapBounds[1][1],
+                  min: mapBounds[0][1],
+                  step: 0.001,
+                },
               }}
             />
             <Box sx={ImgDoubleButtonContainerStyle}>
@@ -183,16 +204,21 @@ const MapDlData = (props: MapDlDataProps) => {
                 label={t('app.map.downloadDataDialog.map.north')}
                 type="number"
                 value={downLoadBounds[1][0]}
-                onChange={(e) => {
+                onChange={e => {
                   changeBounds([
                     [downLoadBounds[0][0], downLoadBounds[0][1]],
-                    [Number(e.target.value.replace(',','.')), downLoadBounds[1][1]],
+                    [
+                      Number(e.target.value.replace(',', '.')),
+                      downLoadBounds[1][1],
+                    ],
                   ]);
                 }}
                 InputProps={{
                   inputProps: {
-                    max: mapBounds[1][0], min: mapBounds[0][0], step: 0.001
-                  }
+                    max: mapBounds[1][0],
+                    min: mapBounds[0][0],
+                    step: 0.001,
+                  },
                 }}
               />
               <TextField
@@ -200,16 +226,21 @@ const MapDlData = (props: MapDlDataProps) => {
                 label={t('app.map.downloadDataDialog.map.south')}
                 type="number"
                 value={downLoadBounds[0][0]}
-                onChange={(e) => {
+                onChange={e => {
                   changeBounds([
-                    [Number(e.target.value.replace(',','.')), downLoadBounds[0][1]],
+                    [
+                      Number(e.target.value.replace(',', '.')),
+                      downLoadBounds[0][1],
+                    ],
                     [downLoadBounds[1][0], downLoadBounds[1][1]],
                   ]);
                 }}
                 InputProps={{
                   inputProps: {
-                    max: mapBounds[1][0], min: mapBounds[0][0], step: 0.001
-                  }
+                    max: mapBounds[1][0],
+                    min: mapBounds[0][0],
+                    step: 0.001,
+                  },
                 }}
               />
             </Box>
@@ -218,20 +249,29 @@ const MapDlData = (props: MapDlDataProps) => {
               label={t('app.map.downloadDataDialog.map.east')}
               type="number"
               value={downLoadBounds[1][1]}
-              onChange={(e) => {
+              onChange={e => {
                 changeBounds([
                   [downLoadBounds[0][0], downLoadBounds[0][1]],
-                  [downLoadBounds[1][0], Number(e.target.value.replace(',','.'))],
-                ])
+                  [
+                    downLoadBounds[1][0],
+                    Number(e.target.value.replace(',', '.')),
+                  ],
+                ]);
               }}
               InputProps={{
-                  inputProps: {
-                      max: mapBounds[1][1], min: mapBounds[0][1], step: 0.001
-                  }
+                inputProps: {
+                  max: mapBounds[1][1],
+                  min: mapBounds[0][1],
+                  step: 0.001,
+                },
               }}
             />
           </Box>
-          {showReset && (<Button size={'small'} onClick={resetBounds}>Ripristina coordinate originali</Button>)}
+          {showReset && (
+            <Button size={'small'} onClick={resetBounds}>
+              Ripristina coordinate originali
+            </Button>
+          )}
           {/*{JSON.stringify(downLoadBounds)}*/}
         </Box>
       </Box>

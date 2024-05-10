@@ -88,11 +88,13 @@ const TSDataContainer = (props: TSDataContainerProps) => {
   const joinNames = (names: string[]) => names.filter(name => name).join(' - ');
   const colors = [
     {
+      Histo: 'rgb(100,100,100)',
       Rcp26: 'rgb(46,105,193)',
       Rcp45: 'rgb(243, 156, 18)',
       Rcp85: 'rgb(231,60,60)',
     },
     {
+      Histo: 'rgba(100,100,100, 0.4)',
       Rcp26: 'rgba(46,105,193, 0.4)',
       Rcp45: 'rgba(243, 156, 18, 0.4)',
       Rcp85: 'rgba(231,60,60, 0.4)',
@@ -131,16 +133,37 @@ const TSDataContainer = (props: TSDataContainerProps) => {
       })
       .catch(err => {
         console.log(err);
-        dispatch(actions.actions.genericError({ error: 'app.error.dlTimeSeries' }),);
+        dispatch(
+          actions.actions.genericError({ error: 'app.error.dlTimeSeries' }),
+        );
       });
-  }, [selected_map, selectactable_parameters, models]);
+  }, [
+    selected_map,
+    selectactable_parameters,
+    models,
+    setIds,
+    api,
+    latLng.lat,
+    latLng.lng,
+    scenarios,
+    layers,
+    dispatch,
+    actions.actions,
+  ]);
 
   const { t } = useTranslation();
 
   const getLegend = () => {
     //TODO names lookup
     const legend = timeseries?.map(
-      item => `${findParamName(item.dataset.scenario_id, 'scenarios')} - ${findParamName(item.dataset.forecast_model_id, 'forecast_models')}`,
+      item =>
+        `${findParamName(
+          item.dataset.scenario_id,
+          'scenarios',
+        )} - ${findParamName(
+          item.dataset.forecast_model_id,
+          'forecast_models',
+        )}`,
     );
     return legend;
   };
@@ -152,11 +175,11 @@ const TSDataContainer = (props: TSDataContainerProps) => {
   };
   const getLineType = dataset => {
     return 'solid';
-    return dataset.forecast_model === models[0] ? 'solid' : 'dashed';
+    //return dataset.forecast_model === models[0] ? 'solid' : 'dashed';
   };
   const getLineOpacity = dataset => {
     return 1;
-    return dataset.forecast_model === models[0] ? 1 : 0.8;
+    //return dataset.forecast_model === models[0] ? 1 : 0.8;
   };
 
   const getChartData = item => {
@@ -174,7 +197,10 @@ const TSDataContainer = (props: TSDataContainerProps) => {
   };
 
   const seriesObj = timeseries?.map(item => ({
-    name: `${findParamName(item.dataset.scenario_id, 'scenarios')} - ${findParamName(item.dataset.forecast_model_id, 'forecast_models')}`,
+    name: `${findParamName(
+      item.dataset.scenario_id,
+      'scenarios',
+    )} - ${findParamName(item.dataset.forecast_model_id, 'forecast_models')}`,
     type: 'line',
     smooth: true,
     // sampling: 'average',
@@ -188,10 +214,7 @@ const TSDataContainer = (props: TSDataContainerProps) => {
   }));
 
   const titleText = `
-     ${findValueName(
-    'variable',
-    'variables',
-  )}
+     ${findValueName('variable', 'variables')}
   `;
 
   const subText = `
@@ -202,9 +225,11 @@ const TSDataContainer = (props: TSDataContainerProps) => {
     selected_map.time_start,
   )} ${t('app.map.timeSeriesDialog.to')} ${formatYear(
     selected_map.time_end,
-  )} - ${place ? place+' - ' : ''}${t('app.map.timeSeriesDialog.lat')} ${roundTo4(latLng.lat)} ${t(
-    'app.map.timeSeriesDialog.lng',
-  )} ${roundTo4(latLng.lng)}     © ARPAV - Arpa FVG
+  )} - ${place ? place + ' - ' : ''}${t(
+    'app.map.timeSeriesDialog.lat',
+  )} ${roundTo4(latLng.lat)} ${t('app.map.timeSeriesDialog.lng')} ${roundTo4(
+    latLng.lng,
+  )}     © ARPAV - Arpa FVG
   Si tratta di proiezioni climatiche e non di previsioni a lungo termine. Il valore annuale ha validità in un contesto di trend trentennale.`;
 
   const photoCameraIconPath =
@@ -214,8 +239,8 @@ const TSDataContainer = (props: TSDataContainerProps) => {
     title: {
       text: titleText,
       subtext: subText,
-      textStyle: isMobile ? {width: 300, overflow: 'break'} : {},
-      subtextStyle: isMobile ? {width: 300, overflow: 'break'} : {},
+      textStyle: isMobile ? { width: 300, overflow: 'break' } : {},
+      subtextStyle: isMobile ? { width: 300, overflow: 'break' } : {},
       itemGap: -22,
       top: '5%',
       left: 'center',
@@ -226,10 +251,16 @@ const TSDataContainer = (props: TSDataContainerProps) => {
       axisPointer: {
         label: {
           show: true,
-          formatter: (v) => `${t('app.map.timeSeriesDialog.xUnit')} ${v.value !== null ? roundTo4(v.value, 1) : '-'}`,
+          formatter: v =>
+            `${t('app.map.timeSeriesDialog.xUnit')} ${
+              v.value !== null ? roundTo4(v.value, 1).replace('.', ',') : '-'
+            }`,
         },
       },
-      valueFormatter: (v) => `${v !== null ? roundTo4(v, 1) : '-'} ${timeseries[0]?.dataset?.unit}`,
+      valueFormatter: v =>
+        `${v !== null ? roundTo4(v, 1).replace('.', ',') : '-'} ${
+          timeseries[0]?.dataset?.unit
+        }`,
     },
     legend: {
       data: getLegend(),
@@ -248,14 +279,17 @@ const TSDataContainer = (props: TSDataContainerProps) => {
       left: isMobile ? 'center' : 'right',
       feature: {
         saveAsImage: {
-          name: `Serie temporale ${findValueName('variable', 'variables')} - ${joinNames([
-          findValueName('forecast_model', 'forecast_models'),
-          // findValueName('scenario', 'scenarios'),
-        ])} - ${joinNames([
-          findValueName('data_series', 'data_series'),
-          findValueName('value_type', 'value_types'),
-          findValueName('time_window', 'time_windows'),
-        ])} - ${findValueName('year_period', 'year_periods')}`,
+          name: `Serie temporale ${findValueName(
+            'variable',
+            'variables',
+          )} - ${joinNames([
+            findValueName('forecast_model', 'forecast_models'),
+            // findValueName('scenario', 'scenarios'),
+          ])} - ${joinNames([
+            findValueName('data_series', 'data_series'),
+            findValueName('value_type', 'value_types'),
+            findValueName('time_window', 'time_windows'),
+          ])} - ${findValueName('year_period', 'year_periods')}`,
           title: t('app.map.timeSeriesDialog.saveAsImage'),
           icon: photoCameraIconPath,
           iconStyle: {
@@ -312,7 +346,13 @@ const TSDataContainer = (props: TSDataContainerProps) => {
         .filter(
           x =>
             !allIds.includes(
-              `${findParamName(x.dataset.scenario_id, 'scenarios')} - ${findParamName(x.dataset.forecast_model_id, 'forecast_models')}`
+              `${findParamName(
+                x.dataset.scenario_id,
+                'scenarios',
+              )} - ${findParamName(
+                x.dataset.forecast_model_id,
+                'forecast_models',
+              )}`,
             ),
         )
         .map(x => x.dataset.id),
@@ -320,14 +360,14 @@ const TSDataContainer = (props: TSDataContainerProps) => {
   };
 
   const dataZoomHandle = (params, chart) => {
-    const {startValue, endValue} = chart.getOption().dataZoom[0];
+    const { startValue, endValue } = chart.getOption().dataZoom[0];
     const range = {
       start: timeserie[0].values[startValue].time,
-      end: timeserie[0].values[endValue-1].time
+      end: timeserie[0].values[endValue - 1].time,
     };
     // console.log(startValue, endValue, range)
     setTimeRange(range);
-  }
+  };
 
   return (
     <Box sx={TSDataContainerStyle}>

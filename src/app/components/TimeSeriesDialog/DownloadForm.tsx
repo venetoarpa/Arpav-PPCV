@@ -91,7 +91,9 @@ export const DownloadForm = props => {
           disabled={downloadDisabled || loader || !ids.current?.length}
           color={'primary'}
           variant={'contained'}
-          startIcon={loader ? <CircularProgress size={20} /> : <FileDownloadIcon />}
+          startIcon={
+            loader ? <CircularProgress size={20} /> : <FileDownloadIcon />
+          }
           onClick={download}
         >
           {t('app.map.timeSeriesDialog.DLCsv')}

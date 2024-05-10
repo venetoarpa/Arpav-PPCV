@@ -42,7 +42,7 @@ export interface IItem {
   id: string;
   name: string;
   description: string;
-  disabled: boolean|null;
+  disabled: boolean | null;
 }
 
 export interface IGroup {
@@ -121,7 +121,7 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
     handleChange(selStateTmp, selectedValue);
   };
 
-  const renderSelectedValue = (selectedValues:IGrpItmIndex[]) =>
+  const renderSelectedValue = (selectedValues: IGrpItmIndex[]) =>
     selectedValues
       .map(item => item.itemName)
       .filter(name => name)
@@ -133,12 +133,18 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
         multiple
         value={selState}
         renderValue={selected =>
-          isMobile ? <Box sx={IconBoxStyle}><SnowIcon /></Box> : renderSelectedValue(selected)
+          isMobile ? (
+            <Box sx={IconBoxStyle}>
+              <SnowIcon />
+            </Box>
+          ) : (
+            renderSelectedValue(selected)
+          )
         }
-        onOpen={()=>setIsOpen(true)}
-        onClose={()=>setIsOpen(false)}
+        onOpen={() => setIsOpen(true)}
+        onClose={() => setIsOpen(false)}
         sx={SelectStyle}
-        className={`MultiRadioSelect ${isOpen?'MultiRadioSelect-open':''}`}
+        className={`MultiRadioSelect ${isOpen ? 'MultiRadioSelect-open' : ''}`}
         MenuProps={{ sx: menuSx }}
       >
         {/*@ts-ignore*/}
@@ -186,7 +192,11 @@ export function MultiRadioSelect(props: MultiRadioSelectProps) {
                       return (
                         <MenuItem key={item.id} disableGutters>
                           <FormControlLabel
-                            className={`MultiRadioSelectMenuItem ${isSelected?'MultiRadioSelectMenuItem-selected':''}`}
+                            className={`MultiRadioSelectMenuItem ${
+                              isSelected
+                                ? 'MultiRadioSelectMenuItem-selected'
+                                : ''
+                            }`}
                             //See Sorting fields note.
                             value={itemValue}
                             control={<Radio />}

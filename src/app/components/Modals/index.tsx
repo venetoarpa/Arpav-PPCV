@@ -17,25 +17,25 @@ const ModalRouter = () => {
   useEffect(() => {
     if (routes.includes(location.pathname)) {
       handleOpen();
-    } else if(open) {
+    } else if (open) {
       handleClose();
     }
   }, [location]);
 
   return (
-      <Modal
-        open={open}
-        // onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        sx={ModalStyle}
-      >
-        <Routes>
-          <Route path={routes[0]} element={<InfoPage />} />
-          <Route path={routes[1]} element={<DataPolicyPage />} />
-          <Route path={routes[2]} element={<PrivacyPolicyPage />} />
-        </Routes>
-      </Modal>
+    <Modal
+      open={open}
+      // onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      sx={ModalStyle}
+    >
+      <Routes>
+        <Route path={routes[0]} element={<InfoPage />} />
+        <Route path={routes[1]} element={<DataPolicyPage />} />
+        <Route path={routes[2]} element={<PrivacyPolicyPage />} />
+      </Routes>
+    </Modal>
   );
 };
 export default ModalRouter;

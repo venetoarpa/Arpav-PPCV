@@ -1,8 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import {API_URL} from "../../../../utils/constants";
+import { API_URL } from '../../../../utils/constants';
 
-import { getCookie, removeCookie } from '../../../../utils/cookie'
-
+import { getCookie, removeCookie } from '../../../../utils/cookie';
 
 declare module 'axios' {
   interface AxiosResponse<T = any> extends Promise<T> {}
@@ -17,13 +16,19 @@ abstract class HttpClient {
   }
 
   private _initializeResponseInterceptor = () => {
-    this.instance.interceptors.response.use(this._handleResponse, this._handleError);
+    this.instance.interceptors.response.use(
+      this._handleResponse,
+      this._handleError,
+    );
   };
 
   private _handleResponse = ({ data }: AxiosResponse) => data;
 
   protected _handleError = (error: any) => {
-    if (error?.response?.status === 401 && error?.response?.data?.message === 'Unauthenticated.') {
+    if (
+      error?.response?.status === 401 &&
+      error?.response?.data?.message === 'Unauthenticated.'
+    ) {
       if (getCookie('AuthToken')) {
         removeCookie('AuthToken');
         if (window) window.location.reload();
@@ -46,7 +51,10 @@ export class Http extends HttpClient {
   }
 
   private _initializeRequestInterceptor = () => {
-    this.instance.interceptors.request.use(this._handleRequest, this._handleError);
+    this.instance.interceptors.request.use(
+      this._handleRequest,
+      this._handleError,
+    );
   };
 
   private _handleRequest = (config: AxiosRequestConfig) => {

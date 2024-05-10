@@ -4,9 +4,7 @@
 
 import * as React from 'react';
 import { lazyLoad } from 'utils/loadable';
-import {
-  CircularProgress,
-} from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 export const NotFoundPage = lazyLoad(
   () => import('./index'),
