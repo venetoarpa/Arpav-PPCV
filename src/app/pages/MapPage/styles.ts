@@ -1,4 +1,4 @@
-export const mapStyle = (theme) => ({
+export const mapStyle = theme => ({
   display: 'flex',
   flexDirection: 'column',
   width: '100vw',
@@ -9,7 +9,7 @@ export const mapStyle = (theme) => ({
   // marginTop: theme.custom.headerHeight,
   marginTop: 0,
   // height: `calc(100vh - ${theme.custom.headerHeight})`,
-  height: '100%',
+  height: '100vh',
   // minHeight: '92vh'
   '& .leaflet-bottom .leaflet-bar-timecontrol': {
     // width: '10px',
@@ -18,19 +18,27 @@ export const mapStyle = (theme) => ({
     '&>.timecontrol-date': {
       minWidth: 'fit-content',
       width: 'auto',
-      pt: 0, pb: 0, pl: 2.5, pr: 2.5,
+      pt: 0,
+      pb: 0,
+      pl: 2.5,
+      pr: 2.5,
       '&:hover': {
         position: 'static',
         minWidth: 'fit-content',
         width: 'auto',
-        pt: 0, pb: 0, pl: 2.5, pr: 2.5,
+        pt: 0,
+        pb: 0,
+        pl: 2.5,
+        pr: 2.5,
         whiteSpace: 'nowrap',
       },
       [theme.breakpoints.down('def')]: {
-        pl: 1, pr: 1,
+        pl: 1,
+        pr: 1,
         '&:hover': {
-          pl: 1, pr: 1,
-        }
+          pl: 1,
+          pr: 1,
+        },
       },
     },
     '& .timecontrol-dateslider .slider': {

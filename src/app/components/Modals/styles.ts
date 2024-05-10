@@ -9,7 +9,7 @@ export const ModalStyle = theme => ({
   },
 });
 
-export const PageContainerStyle = (theme) => ({
+export const PageContainerStyle = theme => ({
   overflow: 'auto',
   mt: '1%',
   height: '96%',
@@ -39,7 +39,7 @@ export const PageCloseStyle = theme => ({
 });
 
 export const FakePageFooter = theme => ({
-  '&>p':{
+  '&>p': {
     height: 4,
   },
 });

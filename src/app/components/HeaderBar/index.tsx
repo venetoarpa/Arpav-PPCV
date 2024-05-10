@@ -10,76 +10,120 @@ import {
   Toolbar,
   useMediaQuery,
 } from '@mui/material';
+import {
+  Headers,
+  Header,
+  HeaderBrand,
+  HeaderContent,
+  HeaderRightZone,
+  HeaderProps,
+  HeaderSearch,
+  Icon,
+  Row,
+  HeaderLinkZone,
+  HeaderSocialsZone,
+  LinkList,
+  LinkListItem,
+} from 'design-react-kit';
+import 'typeface-titillium-web';
+
 import { useTheme } from '@mui/material/styles';
 import { useLocation } from 'react-router-dom';
-import {AppBarStyle, ToolBarStyle, BoxTitleStyle, BoxMenuStyle, BoxImgStyle, LogoStyle, LogoStyleV} from './styles';
-import { Link } from "react-router-dom";
+import {
+  AppBarStyle,
+  ToolBarStyle,
+  BoxTitleStyle,
+  BoxMenuStyle,
+  BoxImgStyle,
+  LogoStyle,
+  LogoStyleV,
+  HeaderStyle,
+  HeaderBrandStyle,
+  LinkStyle,
+  HeaderTextStyle,
+} from './styles';
+import { Link } from 'react-router-dom';
+class HeaderBarProps {
+  mode?: 'compact' | 'full' = 'compact';
+}
 
-
-const HeaderBar = () => {
+const HeaderBar = (props: HeaderBarProps) => {
   const { t } = useTranslation();
   // const actualstate = useSelector(state => state);
   // const route = useLocation();
   // console.log({ route, actualstate });
-  const regioneImg = 'img/logo_regione_veneto.png';
-  const arpavImg = 'img/logo_arpav.png';
-  const snpaImg = 'img/logo_SNPA.png';
+  const regioneImg = '/img/logo_regione_veneto.png';
+  const arpavImg = '/img/logo_arpav.png';
+  const snpaImg = '/img/logo_SNPA.png';
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('def'));
 
   return (
-    <AppBar // position="static"
-      sx={AppBarStyle}
-    >
-      <Toolbar sx={ToolBarStyle}>
-        {/*
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          */}
-        <Box style={{paddingLeft: '10px'}}>
-          <MuiLink sx={BoxTitleStyle} href="/" color='success.dark' underline={'none'}>
-            <Typography variant="h5" component="span" sx={LogoStyle}>
-              PPC
-            </Typography>
-            <Typography variant="h5" component="span" sx={LogoStyleV}>
-              {'NE '}
-            </Typography>
-            {!isMobile &&
-              <Typography variant="h6" component="span">
-                {t('app.header.acronymMeaning')}
-              </Typography>
-            }
-          </MuiLink>
-        </Box>
-        <Box sx={BoxMenuStyle}>
-          <MuiLink component={Link} to="/info" color="primary" underline={'none'}>
-            {t('app.header.menu.info')}
-          </MuiLink>
-          <MuiLink component={Link} to="/privacy" color="primary" underline={'none'}>
-            {t('app.header.menu.privacyPolicy')}
-          </MuiLink>
-          <MuiLink component={Link} to="/data" color="primary" underline={'none'} style={{paddingRight: '10px'}}>
-            {t('app.header.menu.dataPolicy')}
-          </MuiLink>
-        </Box>
-        {/*
-          <Box sx={BoxImgStyle}>
-            {!isMobile && <MuiLink href={'https://www.regione.veneto.it/'}><img src={regioneImg} alt={'Regione Veneto'}/></MuiLink>}
-            <MuiLink href={'https://www.arpa.veneto.it/'}><img src={arpavImg} alt={'ARPA Veneto'}/></MuiLink>
-            {!isMobile && <MuiLink href={'https://www.snpambiente.it/'}><img src={snpaImg} alt={'SNPAmbiente'}/></MuiLink>}
-          </Box>
-         */}
-      </Toolbar>
-      {/*<p><small>{JSON.stringify(actualstate)} - {JSON.stringify(route)}</small></p>*/}
-    </AppBar>
+    <Headers>
+      <Header theme="light" type="slim" style={HeaderStyle}>
+        <HeaderContent>
+          <HeaderBrand style={HeaderBrandStyle} href="/">
+            <b className="green">{t('app.header.acronymMeaning')}</b>
+          </HeaderBrand>
+          <HeaderRightZone>
+            <HeaderLinkZone>
+              <LinkList>
+                <LinkListItem href="/info" style={LinkStyle}>
+                  {t('app.header.menu.info')}
+                </LinkListItem>
+                <LinkListItem href="/privacy" style={LinkStyle}>
+                  {t('app.header.menu.privacyPolicy')}
+                </LinkListItem>
+                <LinkListItem href="/data" style={LinkStyle}>
+                  {t('app.header.menu.dataPolicy')}
+                </LinkListItem>
+              </LinkList>
+            </HeaderLinkZone>
+          </HeaderRightZone>
+        </HeaderContent>
+      </Header>
+      {props.mode === 'full' ? (
+        <Header theme="light" type="center">
+          <HeaderContent>
+            <HeaderBrand>
+              <img
+                src={require('../../../assets/img/logo_arpav.png')}
+                alt="arpav"
+              ></img>
+            </HeaderBrand>
+            <HeaderRightZone style={HeaderTextStyle}>
+              <HeaderSocialsZone>
+                <ul>
+                  <li>
+                    <a aria-label="Facebook" href="#" target="_blank">
+                      <Icon icon="it-facebook" />
+                    </a>
+                  </li>
+                  <li>
+                    <a aria-label="Github" href="#" target="_blank">
+                      <Icon icon="it-github" />
+                    </a>
+                  </li>
+                  <li>
+                    <a aria-label="Twitter" href="#" target="_blank">
+                      <Icon icon="it-twitter" />
+                    </a>
+                  </li>
+                </ul>
+              </HeaderSocialsZone>
+              <HeaderSearch iconName="it-search" label="Cerca" />
+            </HeaderRightZone>
+          </HeaderContent>
+        </Header>
+      ) : (
+        <></>
+      )}
+    </Headers>
   );
 };
 export default HeaderBar;
+
+//
+
+//

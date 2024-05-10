@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Breakpoint, PaletteMode } from '@mui/material';
 
 declare module '@mui/material/styles' {
@@ -31,6 +32,7 @@ const commonTheme = {
     borderRadius: 2,
   },
   typography: {
+    fontFamily: 'Titillium Web, Helvetica, sans-serif',
     body2: {
       fontSize: '0.775rem',
     },
@@ -46,9 +48,9 @@ export const lightTheme = {
       white: '#fff',
     },
     primary: {
-      main: '#ae6028',
-      light: '#ae6028',
-      dark: '#ae6028',
+      main: '#2d9d6e',
+      light: '#164d36',
+      dark: '#2d9d6e',
       contrastText: '#fff',
     },
     secondary: {

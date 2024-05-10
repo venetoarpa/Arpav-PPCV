@@ -1,3 +1,1 @@
-export const InfoPageStyle = (theme) => ({
-
-});
+export const InfoPageStyle = theme => ({});

@@ -13,32 +13,38 @@ export const warning = keyframes`
 export const needsSelection = keyframes`
     from {
       border: none;
-      # background-color: #d18a5c;
+      // background-color: #d18a5c;
     }
     to {
       border: 1px solid yellow;
-      # background-color: #D5956F;
+      // background-color: #D5956F;
     }
 `;
 
-
 export const MapMenuBarStyle = {
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   alignItems: 'flex-end',
   '& .MuiSelect-select': {
     color: 'primary.contrastText',
+    paddingTop: '8px',
   },
   '& button': {
     color: 'primary.contrastText',
   },
+  '& .MuiTypography-root': {
+    paddingTop: '4px',
+  },
 };
 
 export const MenuFormControlStyle = theme => ({
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   position: 'static',
 });
 
 export const GridContainerStyle = {
   // color: '#d5956f',
   flexBasis: '100%',
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   '--Grid-borderWidth': '1px',
   borderTop: 'none',
   borderLeft: 'var(--Grid-borderWidth) solid',
@@ -59,6 +65,7 @@ export const MenuSelectionMobileStyle = theme => ({
   border: '1px solid',
   borderColor: 'divider',
   color: 'success.contrastText',
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   backgroundColor: 'success.dark',
   pt: 1.5,
   pb: 0.5,
@@ -69,22 +76,26 @@ export const MenuSelectionMobileStyle = theme => ({
 export const FirstRowStyle = theme => ({
   color: 'success.dark',
   backgroundColor: 'secondary.light',
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   paddingLeft: 2,
 });
 
 export const SecondRowStyle = theme => ({
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   backgroundColor: 'success.dark',
   '& .NeedsSelection': {
-    animation: `${warning} 2s infinite ease`
+    animation: `${warning} 2s infinite ease`,
   },
 });
 
 export const MenuLabelStyle = {
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   paddingTop: 1,
   paddingBottom: 0.5,
 };
 
 export const SelectStyle = theme => ({
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   width: '100%',
   height: '100%',
   '& .MuiSelect-select': {
@@ -107,8 +118,10 @@ export const SelectStyle = theme => ({
   },
 });
 
-export const LeftSelectStyle = theme => ({...SelectStyle(theme),
+export const LeftSelectStyle = theme => ({
+  ...SelectStyle(theme),
   '& .MultiRadioSelect': {
+    fontFamily: 'Titillium Web, Helvetica, sans-serif',
     paddingLeft: 4,
     borderRadius: '0',
     [theme.breakpoints.down('def')]: {
@@ -117,8 +130,18 @@ export const LeftSelectStyle = theme => ({...SelectStyle(theme),
   },
 });
 
+export const MenuR1Style = theme => ({
+  ...FirstRowStyle(theme),
+  width: '47px',
+});
+export const MenuR2Style = theme => ({
+  ...SecondRowStyle(theme),
+  width: '47px',
+});
+
 export const SelectMenuStyle = theme => ({
   '& .MuiMenu-paper': {
+    fontFamily: 'Titillium Web, Helvetica, sans-serif',
     color: 'primary.contrastText',
     backgroundColor: 'primary.main',
     pt: 0,
@@ -127,19 +150,22 @@ export const SelectMenuStyle = theme => ({
     pr: 2,
     borderRadius: '0',
     '& .MultiRadioSelectMenu': {
+      fontFamily: 'Titillium Web, Helvetica, sans-serif',
       gap: 4,
       pr: 3,
     },
     '& .MultiRadioSelectMenuColumn': {
+      fontFamily: 'Titillium Web, Helvetica, sans-serif',
       gap: 2,
     },
     '& .MultiRadioSelectMenuGroupLabel': {
+      fontFamily: 'Titillium Web, Helvetica, sans-serif',
       textTransform: 'uppercase',
     },
     '& .NeedsSelection': {
       // padding: '5px',
       // border: '3px solid red',
-      animation: `${needsSelection} 2s infinite ease`
+      animation: `${needsSelection} 2s infinite ease`,
     },
     '& .MultiRadioSelectMenuItem': {
       opacity: theme.palette.action.notSelectedOpacity,
@@ -158,12 +184,17 @@ export const SelectMenuStyle = theme => ({
 });
 
 export const LeftSpaceStyle = {
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   paddingLeft: 2,
 };
 
 export const ButtonBoxStyle = {
   display: 'flex',
   justifyContent: 'center',
+  fontFamily: 'Titillium Web, Helvetica, sans-serif',
   alighItems: 'center',
   height: '100%',
+  '.btn': {
+    padding: '12px 0',
+  },
 };

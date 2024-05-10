@@ -119,7 +119,7 @@ export const InputYearStyle = theme => ({
   width: '9em',
   [theme.breakpoints.down('def')]: {
     width: '8.5em',
-  }
+  },
 });
 
 export const ImgButtonContainerStyle = theme => ({

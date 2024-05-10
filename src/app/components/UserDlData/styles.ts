@@ -7,7 +7,7 @@ export const UserDataContainerStyle = theme => ({
 export const FieldContainerStyle = theme => ({
   m: 6,
   [theme.breakpoints.down('def')]: {
-    m:3,
+    m: 3,
   },
 });
 

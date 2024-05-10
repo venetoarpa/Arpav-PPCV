@@ -1,4 +1,4 @@
-export const MultiRadioSelectMenuStyle = (theme) => ({
+export const MultiRadioSelectMenuStyle = theme => ({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -37,10 +37,10 @@ export const GroupMenuStyle = {
 
   '& .MuiButtonBase-root': {
     pt: 0,
-  }
+  },
 };
 
-export const MenuLabelStyle = (theme) => ({
+export const MenuLabelStyle = theme => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -55,30 +55,30 @@ export const SelectStyle = {
   '& .MuiOutlinedInput-notchedOutline': {
     borderStyle: 'none',
   },
-}
+};
 
 export const GroupLabelStyle = {
   paddingLeft: 1,
   paddingRight: 1,
-}
+};
 
 export const DividerStyle = {
   marginLeft: 1,
   marginRight: 1,
-}
+};
 export const IconBoxStyle = {
   display: 'flex',
   justifyContent: 'center',
-}
+};
 
 export const ExitContainerStyle = {
   display: 'flex',
   justifyContent: 'flex-end',
-}
+};
 
 export const ExitIconStyle = {
   pt: 1,
   pb: 2,
   pr: 0,
   pl: 1,
-}
+};

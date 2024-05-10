@@ -1,4 +1,6 @@
-export const AppBarStyle = (theme) => ({
+import { HeaderProps } from 'design-react-kit';
+
+export const AppBarStyle = theme => ({
   position: 'static',
   height: theme.custom.headerHeight,
   maxHeight: theme.custom.headerHeight,
@@ -68,15 +70,34 @@ export const BoxImgStyle = theme => ({
   },
 });
 
-export const LogoStyle = (theme) => ({
+export const LogoStyle = theme => ({
   fontWeight: 'bold',
-      display: 'none',
+  display: 'none',
   [theme.breakpoints.down('md')]: {
-      display: 'inline'
-    }
+    display: 'inline',
+  },
 });
 
-export const LogoStyleV = (theme) => ({
-  ... LogoStyle(theme),
+export const LogoStyleV = theme => ({
+  ...LogoStyle(theme),
   color: 'primary.main',
 });
+
+export const HeaderStyle = {
+  fontFamily: 'Titillium Web, Helvetica Neue, Helvetica, Arial, sans-serif',
+};
+
+export const HeaderBrandStyle = {
+  fontFamily: 'Titillium Web, Helvetica Neue, Helvetica, Arial, sans-serif',
+  fontSize: '1.25rem',
+  color: 'rgb(22, 77, 54)',
+};
+
+export const LinkStyle = {
+  color: '#ae6028',
+};
+
+export const HeaderTextStyle = {
+  color: 'rgb(22, 77, 54)',
+  fill: 'rgb(22, 77, 54)',
+};

@@ -1,4 +1,4 @@
-import {Property} from "csstype";
+import { Property } from 'csstype';
 
 export const MapContainerStyle = {
   height: '100%',
@@ -41,4 +41,9 @@ export const LegendBarStyle = theme => ({
       width: '65px',
     },
   },
+});
+
+export const PopupStyle = theme => ({
+  width: '108px',
+  height: '42px',
 });

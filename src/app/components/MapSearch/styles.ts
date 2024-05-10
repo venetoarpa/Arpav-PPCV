@@ -4,7 +4,8 @@ export const MapSearchContainerStyle = theme => ({
   backgroundColor: 'background.paper',
   [theme.breakpoints.down('def')]: {
     // pl: 0.1, pr: 0.1,
-    pl: 0, pr: 0,
+    pl: 0,
+    pr: 0,
   },
 });
 
@@ -25,12 +26,13 @@ export const MapSearchFirstRowStyle = theme => ({
 
 export const MapSearchSecondRowStyle = theme => ({
   m: 0,
-  p: 0,
+  p: '2px 4px',
   display: 'flex',
   alignItems: 'center',
-  gap: 2,
+  gap: 1.5,
+  h: 45,
   boxShadow: 'none',
-  justifyContent: 'space-around'
+  justifyContent: 'space-around',
 });
 
 export const LatLngStyle = theme => ({
