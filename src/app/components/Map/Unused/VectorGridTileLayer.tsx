@@ -10,7 +10,8 @@
 
 import {
   createElementObject,
-  createTileLayerComponent, LayerProps,
+  createTileLayerComponent,
+  LayerProps,
   updateGridLayer,
   withPane,
 } from '@react-leaflet/core';
@@ -47,7 +48,6 @@ export interface VectorGridTileLayerProps extends WMSTileLayerProps {
   // popup: any;
 }
 
-
 export const VectorGridTileLayer = createTileLayerComponent<
   TileLayer.WMS,
   VectorGridTileLayerProps
@@ -56,78 +56,76 @@ export const VectorGridTileLayer = createTileLayerComponent<
     { eventHandlers: _eh, params = {}, url, ...options },
     context,
   ) {
-
     // @ts-ignore
     // const tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
-    const tdWmsLayer = L.vectorGrid.protobuf(url, {
-		interactive: true,
-		getFeatureId: function(f) {
-			return f.properties;
-		},
-    vectorTileLayerStyles: {
-      // 'public.places_cities.centroid': (properties, zoom, geometryDimension) => {
-      //   // console.log(properties, zoom, geometryDimension);
-      //   return {
-      //     color: 'grey',
-      //     weight: 1,
-      //     radius: 5,
-      //     fill: true,
-      //     fillOpacity: 1,
-      //   }
-      // },
-      // 'public.places_provinces.geometry': {
-      //   // color: 'green',
-      //   // fill: false
-			// 	weight: 1,
-			// 	// fillColor: '#3bb50a',
-			// 	color: '#b50a0a',
-			// 	fillOpacity: 0,
-			// 	opacity: 0.4
-      // },
-      'public.places_regions.geometry': {
-				fill: true,
-				weight: 1,
-				fillColor: '#c0c0c0',
-				color: '#b50a0a',
-				fillOpacity: 0,
-				opacity: 0.4
-        // color: 'red',
-        // fill: false
-      },
-      // 'public.places_provinces.centroid': {
-      //   color: 'blue',
-      //   fill: true
-      // },
-    },
-  //   getFeatureId: function (e) {
-  //     const {map} = context;
-  //     console.log(e);
-  //     if(e.geometry[0].length == 1) {
-  //       const latlng = map.layerPointToLatLng(e.geometry[0][0]);
-  //       console.log(latlng);
-  //       const stationName = e.properties.name;
-  //       const marker = L.marker(latlng, {
-  //         icon: L.divIcon({
-  //           html: `<span class=labelName>${stationName}</span>`,
-  //           iconAnchor: [5, 10],
-  //         }),
-  //       });
-  //       marker.addTo(map);
-  //     }
-  // },
-  })
-	.on('click', function(e) {
-		// console.log('BAUBAU ',e)
-	})
-  .on('moveend', function(e) {
-     // console.log(e.map.getBounds());
-  })
-	.on('mouseover', function(e) {
-		// console.log('sopra!!! ',e)
-		// $('.leaflet-tile-loaded').addClass("leaflet-interactive");
-	})
-;
-
+    const tdWmsLayer = L.vectorGrid
+      .protobuf(url, {
+        interactive: true,
+        getFeatureId: function (f) {
+          return f.properties;
+        },
+        vectorTileLayerStyles: {
+          // 'public.places_cities.centroid': (properties, zoom, geometryDimension) => {
+          //   // console.log(properties, zoom, geometryDimension);
+          //   return {
+          //     color: 'grey',
+          //     weight: 1,
+          //     radius: 5,
+          //     fill: true,
+          //     fillOpacity: 1,
+          //   }
+          // },
+          // 'public.places_provinces.geometry': {
+          //   // color: 'green',
+          //   // fill: false
+          // 	weight: 1,
+          // 	// fillColor: '#3bb50a',
+          // 	color: '#b50a0a',
+          // 	fillOpacity: 0,
+          // 	opacity: 0.4
+          // },
+          'public.places_regions.geometry': {
+            fill: true,
+            weight: 1,
+            fillColor: '#c0c0c0',
+            color: '#b50a0a',
+            fillOpacity: 0,
+            opacity: 0.4,
+            // color: 'red',
+            // fill: false
+          },
+          // 'public.places_provinces.centroid': {
+          //   color: 'blue',
+          //   fill: true
+          // },
+        },
+        //   getFeatureId: function (e) {
+        //     const {map} = context;
+        //     console.log(e);
+        //     if(e.geometry[0].length == 1) {
+        //       const latlng = map.layerPointToLatLng(e.geometry[0][0]);
+        //       console.log(latlng);
+        //       const stationName = e.properties.name;
+        //       const marker = L.marker(latlng, {
+        //         icon: L.divIcon({
+        //           html: `<span class=labelName>${stationName}</span>`,
+        //           iconAnchor: [5, 10],
+        //         }),
+        //       });
+        //       marker.addTo(map);
+        //     }
+        // },
+      })
+      .on('click', function (e) {
+        // console.log('BAUBAU ',e)
+      })
+      .on('moveend', function (e) {
+        // console.log(e.map.getBounds());
+      })
+      .on('mouseover', function (e) {
+        // console.log('sopra!!! ',e)
+        // $('.leaflet-tile-loaded').addClass("leaflet-interactive");
+      });
     return createElementObject(tdWmsLayer, context);
   },
   function updateVectorGridTileLayer(layer, props, prevProps) {

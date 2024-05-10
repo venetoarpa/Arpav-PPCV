@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**
  *
  * MapPage
@@ -5,7 +6,7 @@
  */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {Box, Backdrop, CircularProgress, useMediaQuery} from '@mui/material';
+import { Box, Backdrop, CircularProgress, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { MapLoadingContainerStyle, mapStyle } from './styles';
 import Map from '../../components/Map';
@@ -23,11 +24,16 @@ import { selectMap } from './slice/selectors';
 import { Filters, iCityItem } from './slice/types';
 import { saveAs } from 'file-saver';
 import useCustomSnackbar from '../../../utils/useCustomSnackbar';
-import HeaderBar from "../../components/HeaderBar";
+import HeaderBar from '../../components/HeaderBar';
 
-interface Props {}
+interface MapPageProps {
+  map_mode: string;
+  map_data: string;
+}
 
-export function MapPage(props: Props) {
+export function MapPage(props: MapPageProps) {
+  const map_mode = props.map_mode;
+  const map_data = props.map_data;
   const actions = useMapSlice();
   const dispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -192,33 +198,44 @@ export function MapPage(props: Props) {
     const format = 'image';
     let year = '';
     try {
-      // @ts-ignore
-      year = selected_map.data_series === 'yes' ? (new Date(mapRef.current?.timeDimension?.getCurrentTime())).getFullYear() : '';
+      year =
+        selected_map.data_series === 'yes'
+          ? new Date((mapRef.current as any).timeDimension?.getCurrentTime())
+              .getFullYear()
+              .toString()
+          : '';
     } catch (e) {
       // console.log('no year');
     }
 
     setInProgress(true);
-    const caption = `${isMobile ? selected_map.variable : findValueName('variable', 'variables')}
+    const caption = `${
+      isMobile ? selected_map.variable : findValueName('variable', 'variables')
+    }
 - ${joinNames([
-          findValueName('forecast_model', 'forecast_models'),
-          findValueName('scenario', 'scenarios'),
-        ])}
+      findValueName('forecast_model', 'forecast_models'),
+      findValueName('scenario', 'scenarios'),
+    ])}
 - ${joinNames([
-          findValueName('data_series', 'data_series'),
-          findValueName('value_type', 'value_types'),
-          findValueName('time_window', 'time_windows'),
-        ])}
+      findValueName('data_series', 'data_series'),
+      findValueName('value_type', 'value_types'),
+      findValueName('time_window', 'time_windows'),
+    ])}
 - ${findValueName('year_period', 'year_periods')}
 ${year ? ` - Anno ${year}` : ''}   © ARPAV - Arpa FVG`; // string or function, added caption to bottom of screen
-    const filename = `Screenshot ${findValueName('variable', 'variables')} - ${joinNames([
-          findValueName('forecast_model', 'forecast_models'),
-          findValueName('scenario', 'scenarios'),
-        ])} - ${joinNames([
-          findValueName('data_series', 'data_series'),
-          findValueName('value_type', 'value_types'),
-          findValueName('time_window', 'time_windows'),
-        ])} - ${findValueName('year_period', 'year_periods')} ${year ? ` Anno ${year}` : ''}.png`;
+    const filename = `Screenshot ${findValueName(
+      'variable',
+      'variables',
+    )} - ${joinNames([
+      findValueName('forecast_model', 'forecast_models'),
+      findValueName('scenario', 'scenarios'),
+    ])} - ${joinNames([
+      findValueName('data_series', 'data_series'),
+      findValueName('value_type', 'value_types'),
+      findValueName('time_window', 'time_windows'),
+    ])} - ${findValueName('year_period', 'year_periods')} ${
+      year ? ` Anno ${year}` : ''
+    }.png`;
     mapScreen
       .takeScreen(format, {
         captionFontSize: isMobile ? 10 : 12,
@@ -248,35 +265,38 @@ ${year ? ` - Anno ${year}` : ''}   © ARPAV - Arpa FVG`; // string or function, 
   };
 
   return (
-        <Box sx={mapStyle}>
-          <HeaderBar />
-          <MapMenuBar onDownloadMapImg={handleDownloadMapImg} />
-          {!loading && (
-            <Map
-              onReady={handleMapReady}
-              openCharts={openCharts}
-              setPoint={setPoint}
-              selectedPoint={selectedPoint}
-            />
-          )}
-          {loading && (
-            <Box sx={MapLoadingContainerStyle}>
-              <CircularProgress size={80} />
-            </Box>
-          )}
-          <TimeSeriesDialog
-            selectedPoint={selectedPoint}
-            open={tSOpen}
-            setOpen={setTSOpen}
-          />
+    <Box sx={mapStyle}>
+      <HeaderBar />
+      <MapMenuBar
+        onDownloadMapImg={handleDownloadMapImg}
+        mode={map_mode}
+        data={map_data}
+      />
 
-          {/*TODO Backdrop only for debug?*/}
-          <Backdrop
-            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
-            open={inProgress}
-          >
-            <CircularProgress color="inherit" size={80} />
-          </Backdrop>
+      <Map
+        onReady={handleMapReady}
+        openCharts={openCharts}
+        setPoint={setPoint}
+        selectedPoint={selectedPoint}
+      />
+      {loading && (
+        <Box sx={MapLoadingContainerStyle}>
+          <CircularProgress size={80} />
         </Box>
+      )}
+      <TimeSeriesDialog
+        selectedPoint={selectedPoint}
+        open={tSOpen}
+        setOpen={setTSOpen}
+      />
+
+      {/*TODO Backdrop only for debug?*/}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+        open={inProgress}
+      >
+        <CircularProgress color="inherit" size={80} />
+      </Backdrop>
+    </Box>
   );
 }

@@ -9,36 +9,43 @@ import {
   iLayerItem,
   MapState,
 } from './types';
-import {findItemByFilters, setSelectable} from "../../../../utils/json_manipulations";
+import {
+  findItemByFilters,
+  setSelectable,
+} from '../../../../utils/json_manipulations';
 
-export const attributesList = ['variables','forecast_models','scenarios','data_series','year_periods','time_windows','value_types'];
+export const attributesList = [
+  'variables',
+  'forecast_models',
+  'scenarios',
+  'data_series',
+  'year_periods',
+  'time_windows',
+  'value_types',
+];
 
 export interface GenericErrorType {
   error: string;
 }
 
 export const find_keys = [
-    'variable',
-    'forecast_model',
-    'scenario',
-    'data_series',
-    'year_period',
-    'value_type',
-  ];
+  'variable',
+  'forecast_model',
+  'scenario',
+  'data_series',
+  'year_period',
+  'value_type',
+];
 export const full_find_keys = [
-    'variable',
-    'forecast_model',
-    'scenario',
-    'data_series',
-    'year_period',
-    'value_type',
-    'time_window',
-  ];
-export const cityTerms = [
-    'name',
-    'lat',
-    'lng',
-  ];
+  'variable',
+  'forecast_model',
+  'scenario',
+  'data_series',
+  'year_period',
+  'value_type',
+  'time_window',
+];
+export const cityTerms = ['name', 'lat', 'lng'];
 
 export const initialState: MapState = {
   selected_map: {
@@ -61,43 +68,23 @@ export const initialState: MapState = {
     color_scale_min: 272,
     color_scale_max: 280,
     bbox: [
-      [
-        14.2,
-        10
-      ],
-      [
-        47.3,
-        44.4
-      ]
+      [14.2, 10],
+      [47.3, 44.4],
     ],
     elevation: 2,
-    legend: '/thredds/wms/ensembletwbc/tas_avg_anom_tw1…85_DJF.nc?REQUEST=GetLegendGraphic&numcolorbands=100&LAYERS=tas&STYLES=default-scalar%2Fseq-YlOrRd',
+    legend:
+      '/thredds/wms/ensembletwbc/tas_avg_anom_tw1…85_DJF.nc?REQUEST=GetLegendGraphic&numcolorbands=100&LAYERS=tas&STYLES=default-scalar%2Fseq-YlOrRd',
     spatialbounds: {
       type: 'Polygon',
       coordinates: [
         [
-          [
-            10.050000388447831,
-            44.49987030029297
-          ],
-          [
-            10.050000388447831,
-            47.39982604980469
-          ],
-          [
-            14.249999802287032,
-            47.39982604980469
-          ],
-          [
-            14.249999802287032,
-            44.49987030029297
-          ],
-          [
-            10.050000388447831,
-            44.49987030029297
-          ]
-        ]
-      ]
+          [10.050000388447831, 44.49987030029297],
+          [10.050000388447831, 47.39982604980469],
+          [14.249999802287032, 47.39982604980469],
+          [14.249999802287032, 44.49987030029297],
+          [10.050000388447831, 44.49987030029297],
+        ],
+      ],
     },
     variable: 'TAS',
     forecast_model: 'ens5',
@@ -105,7 +92,7 @@ export const initialState: MapState = {
     data_series: 'no',
     year_period: 'djf',
     time_window: 'tw1',
-    value_type: 'anomaly'
+    value_type: 'anomaly',
   },
   timeserie: [],
   selectactable_parameters: {
@@ -157,11 +144,30 @@ const slice = createSlice({
     citiesLoaded(state, action: PayloadAction<any>) {
       state.loading = false;
       state.error = null;
-      state.cities = action.payload.map(x => ({...x, label: x.name}));
+      state.cities = action.payload.map(x => ({ ...x, label: x.name }));
     },
-    parametersLoaded: function (state, action: PayloadAction<iBaseParameterItem[][]>) {
-      const [variables,forecast_models,scenarios,data_series,year_periods,time_windows,value_types] = action.payload;
-      state.forecast_parameters = {variables, forecast_models, scenarios, data_series, year_periods, time_windows, value_types};
+    parametersLoaded: function (
+      state,
+      action: PayloadAction<iBaseParameterItem[][]>,
+    ) {
+      const [
+        variables,
+        forecast_models,
+        scenarios,
+        data_series,
+        year_periods,
+        time_windows,
+        value_types,
+      ] = action.payload;
+      state.forecast_parameters = {
+        variables,
+        forecast_models,
+        scenarios,
+        data_series,
+        year_periods,
+        time_windows,
+        value_types,
+      };
       state.loading = false;
     },
     layerLoaded: function (state, action: PayloadAction<iLayerItem[]>) {
@@ -174,29 +180,43 @@ const slice = createSlice({
       state.loading = false;
     },
     setMap(state, action: PayloadAction<Filters>) {
-      const filterDict = Object.fromEntries(Object.entries(action.payload).filter(([key]) => full_find_keys.includes(key)));
-      const filtered = findItemByFilters(JSON.parse(JSON.stringify(state.layers)), filterDict);
-      if(filtered.length > 0) {
+      const filterDict = Object.fromEntries(
+        Object.entries(action.payload).filter(([key]) =>
+          full_find_keys.includes(key),
+        ),
+      );
+      const filtered = findItemByFilters(
+        JSON.parse(JSON.stringify(state.layers)),
+        filterDict,
+      );
+      if (filtered.length > 0) {
         state.selected_map = filtered[0];
-        if(filtered.length === 1)
+        if (filtered.length === 1)
           state.selectactable_parameters = setSelectable(state)[0];
       }
     },
     changeSelection(state, action: PayloadAction<ChangeMapSelectionPatyload>) {
       state.selected_map.id = null;
       // console.log(action.payload)
-      const {key, value} = action.payload;
+      const { key, value } = action.payload;
       state.selected_map[action.payload.key] = action.payload.value;
-      if(state.selected_map.data_series === 'yes') {
+      if (state.selected_map.data_series === 'yes') {
         state.selected_map.time_window = null;
       }
       const [newselectables, selected_map] = setSelectable(state);
       state.selectactable_parameters = newselectables;
       state.selected_map = selected_map;
-      const filterDict = Object.fromEntries(Object.entries(selected_map).filter(([key]) => full_find_keys.includes(key)));
-      const filtered = findItemByFilters(JSON.parse(JSON.stringify(state.layers)), filterDict);
-      if(filtered.length > 0) {
-        if(filtered.length === 1) {
+      const filterDict = Object.fromEntries(
+        Object.entries(selected_map).filter(([key]) =>
+          full_find_keys.includes(key),
+        ),
+      );
+      const filtered = findItemByFilters(
+        JSON.parse(JSON.stringify(state.layers)),
+        filterDict,
+      );
+      if (filtered.length > 0) {
+        if (filtered.length === 1) {
           // console.log('found', filtered[0]);
           console.log('found');
           state.selected_map = filtered[0];
@@ -208,12 +228,15 @@ const slice = createSlice({
         }
       } else {
         console.log('No layer found');
-          // TODO: warning for selection!
+        // TODO: warning for selection!
       }
       // console.log(newselectables?.time_windows)
       state.loading = false;
     },
-    requestTimeserie(state, action: PayloadAction<{ id: number, lat?: number, lng?: number }>) {
+    requestTimeserie(
+      state,
+      action: PayloadAction<{ id: number; lat?: number; lng?: number }>,
+    ) {
       // console.log({action})
       state.error = false;
       state.loading = false;
@@ -236,7 +259,6 @@ export const useMapSlice = () => {
   useInjectSaga({ key: slice.name, saga: mapSaga });
   return { actions: slice.actions };
 };
-
 
 /**
  * Example Usage:

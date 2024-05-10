@@ -1,79 +1,92 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
-import {Box, useMediaQuery} from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
+import sensorPositions from './data';
+import L from 'leaflet';
+
 import {
   MapContainer,
   TileLayer,
   WMSTileLayer,
   ZoomControl,
-  LayersControl
-} from "react-leaflet";
+  LayersControl,
+  Circle,
+  CircleMarker,
+  Popup,
+  GeoJSON,
+} from 'react-leaflet';
 import { Map as LMap } from 'leaflet';
 import {
   MousePositionComponent,
   MousePositionComponentProps,
   MousePositionControlProps,
 } from '../MousePosition';
-import {MapSearch} from '../MapSearch';
-import {DummyControlComponent} from "../DummyMapControl";
-import {useSelector} from "react-redux";
-import {ThreddsWrapperLayer} from "./ThreddsWrapperLayer";
-import CustomControlMap from "./CustomControlMap";
-import {LegendBar} from "./LegendBar";
-import {VectorWrapperLayer} from "./VectorWrapperLayer";
-import {roundTo4} from "../../../utils/json_manipulations";
-import {iCityItem} from "../../pages/MapPage/slice/types";
-import {MapContainerStyle, MobileSpaceDisplayStyle, MousePositionDisplayStyle} from "./styles";
-import {OpacityComponent} from "./OpacityComponent";
+import { MapSearch } from '../MapSearch';
+import { DummyControlComponent } from '../DummyMapControl';
+import { useSelector } from 'react-redux';
+import { ThreddsWrapperLayer } from './ThreddsWrapperLayer';
+import CustomControlMap from './CustomControlMap';
+import { LegendBar } from './LegendBar';
+import { VectorWrapperLayer } from './VectorWrapperLayer';
+import { roundTo4 } from '../../../utils/json_manipulations';
+import { iCityItem } from '../../pages/MapPage/slice/types';
+import {
+  MapContainerStyle,
+  MobileSpaceDisplayStyle,
+  MousePositionDisplayStyle,
+} from './styles';
+import { OpacityComponent } from './OpacityComponent';
 // import {BaseLayerControl} from "./BaseLayerControl";
 
-  const MobileSpaceDisplay = () => {
-    return (
-      <div
-        className={'custom-panel leaflet-bar leaflet-control'}
-        style={MobileSpaceDisplayStyle}
-        // style={{visibility: 'hidden'}}
-      >
-      </div>
-    );}
+const MobileSpaceDisplay = () => {
+  return (
+    <div
+      className={'custom-panel leaflet-bar leaflet-control'}
+      style={MobileSpaceDisplayStyle}
+      // style={{visibility: 'hidden'}}
+    ></div>
+  );
+};
 
 const MousePositionDisplay = (props: MousePositionControlProps) => {
   //{props.latlng.lat}
   //{props.latlng.lng}
   return (
     <Box
-      className={'custom-panel leaflet-bar leaflet-control leaflet-control-coordinates'}
+      className={
+        'custom-panel leaflet-bar leaflet-control leaflet-control-coordinates'
+      }
       sx={MousePositionDisplayStyle}
     >
-      <p>
+      <div>
         {`Lat 
       ${roundTo4(props.latlng.lat)}`}
         <span style={{ visibility: 'hidden' }}>__</span>
         {`Long 
       ${roundTo4(props.latlng.lng)}`}
-      </p>
+      </div>
     </Box>
   );
 };
 
 const MobileMousePositionDisplay = (props: MousePositionControlProps) => {
-  return (<></>);
-}
+  return <></>;
+};
 
 interface MapProps {
   onReady?: (map: LMap) => void;
-  openCharts?: (iCityItem)=>void;
+  openCharts?: (iCityItem) => void;
   setPoint?: Function;
-  selectedPoint?: iCityItem|null;
+  selectedPoint?: iCityItem | null;
   defaultCenter?: [number, number];
   defaultZoom?: number;
 }
 
 const Map = (props: MapProps) => {
   const {
-    setPoint = ()=>{},
-    openCharts = ()=>{},
-    onReady = ()=>{},
+    setPoint = () => {},
+    openCharts = () => {},
+    onReady = () => {},
     selectedPoint = null,
     defaultCenter = [45.9, 12.45],
     defaultZoom = 8,
@@ -110,22 +123,30 @@ const Map = (props: MapProps) => {
       //@ts-ignore
       whenReady={obj => onReady(obj.target)}
     >
-      <ZoomControl position={'topright'}/>
-      {isMobile &&
+      <ZoomControl position={'topright'} />
+      {isMobile && (
         <DummyControlComponent
           position={'topright'}
           customComponent={MobileSpaceDisplay}
         />
-      }
+      )}
       <CustomControlMap position={'topright'}>
+        <Box
+          className="leaflet-bar"
+          style={{ backgroundColor: 'white', padding: '2px' }}
+        >
+          <OpacityComponent></OpacityComponent>
+        </Box>
         <LegendBar
-          className={'leaflet-control-legend'}
+          className={'leaflet-control-legend leaflet-control leaflet-bar'}
           isMobile={isMobile}
         />
       </CustomControlMap>
       <MousePositionComponent
         position={'bottomright'}
-        customComponent={isMobile ? MobileMousePositionDisplay : MousePositionDisplay}
+        customComponent={
+          isMobile ? MobileMousePositionDisplay : MousePositionDisplay
+        }
         // onClick={onMapClick}
       />
       <CustomControlMap position={'topleft'}>
@@ -152,14 +173,49 @@ const Map = (props: MapProps) => {
             attribution='&copy; <a target="_blank" rel="noopener" href="https://s2maps.eu/">Sentinel-2 cloudless</a> by EOX'
           />
         </LayersControl.BaseLayer>
+        <LayersControl.Overlay checked name="Sensori">
+          <GeoJSON
+            data={sensorPositions}
+            pointToLayer={(feature, latlng) => {
+              return L.circleMarker(latlng, {
+                radius: 2,
+                weight: 1,
+              });
+            }}
+          ></GeoJSON>
+        </LayersControl.Overlay>
       </LayersControl>
-      <VectorWrapperLayer selectCallback={(point) => setPoint(point)} selectedPoint={selectedPoint}/>
-      <ThreddsWrapperLayer/>
+      <VectorWrapperLayer
+        selectCallback={point => setPoint(point)}
+        selectedPoint={selectedPoint}
+        openCharts={openCharts}
+      />
       {/*<CustomControlMap position={'topleft'}>*/}
       {/*  <OpacityComponent/>*/}
       {/*</CustomControlMap>*/}
+      <CustomControlMap position="bottomleft">
+        <Typography
+          className={'leaflet-bar-timecontrol leaflet-bar leaflet-disclaimer'}
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            fontSize: '11px',
+            position: 'absolute',
+            bottom: '-10px',
+            left: '-10px',
+            minWidth: '50vw',
+            margin: 0,
+            border: 0,
+            borderRadius: 0,
+          }}
+        >
+          Si trastta di proiezioni climatiche e non di previsioni a lungo
+          termine. Il valore annuale ha validità in un contesto di trend
+          trentennale.
+        </Typography>
+      </CustomControlMap>
+      <ThreddsWrapperLayer />
     </MapContainer>
   );
-}
+};
 
 export default Map;

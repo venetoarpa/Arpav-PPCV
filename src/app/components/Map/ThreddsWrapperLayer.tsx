@@ -1,68 +1,77 @@
-import L, {TileLayer} from "leaflet";
-import {useMap, useMapEvent} from "react-leaflet";
-import {WMS_PROXY_URL} from "../../../utils/constants";
-import {useSelector} from "react-redux";
-import {useLeafletContext, withPane} from '@react-leaflet/core'
-import {useEffect, useRef} from 'react'
+import L, { TileLayer } from 'leaflet';
+import { useMap, useMapEvent } from 'react-leaflet';
+import { WMS_PROXY_URL } from '../../../utils/constants';
+import { useSelector } from 'react-redux';
+import { useLeafletContext, withPane } from '@react-leaflet/core';
+import { useEffect, useRef } from 'react';
 import 'leaflet-timedimension';
 import './timedimension.extended';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension/dist/leaflet.timedimension.control.min.css';
 
-
 export const ThreddsWrapperLayer = (props: any) => {
-  const {selected_map} = useSelector((state: any) => state.map);
-  const context = useLeafletContext()
+  const { selected_map } = useSelector((state: any) => state.map);
+  const context = useLeafletContext();
   const layer = useRef<any>(null);
   const setLayer = (l: any) => {
     layer.current = l;
-  }
+  };
 
-  const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
+  const getMethods = obj =>
+    Object.getOwnPropertyNames(obj).filter(
+      item => typeof obj[item] === 'function',
+    );
 
-
-  const setupFrontLayer = (layer, map, onlyRemove=false) => {
+  const setupFrontLayer = (layer, map, onlyRemove = false) => {
     if (layer && !onlyRemove) {
       layer.bringToFront();
     }
     try {
-      // @ts-ignore
+      // eslint-disable-next-line array-callback-return
       Object.keys(map._layers).map((l: any) => {
-        // @ts-ignore
         l = map._layers[l];
         if (l && l._url && l._url.includes(`public.places_cities.geometry`)) {
           l.bringToFront();
         }
-        if (l && l._url
-          && l._url.includes(`${WMS_PROXY_URL}/thredds/wms/`)
-          // @ts-ignore
-          && !l._url.includes(map.selected_path)
+        if (
+          l &&
+          l._url &&
+          l._url.includes(`${WMS_PROXY_URL}/thredds/wms/`) &&
+          !l._url.includes(map.selected_path)
         ) {
           map.removeLayer(l);
         }
-        if (l && l.currentLayer && l.currentLayer._url
-          && l.currentLayer._url.includes(`${WMS_PROXY_URL}/thredds/wms/`)
-          // @ts-ignore
-          && !l.currentLayer._url.includes(map.selected_path)
+        if (
+          l &&
+          l.currentLayer &&
+          l.currentLayer._url &&
+          l.currentLayer._url.includes(`${WMS_PROXY_URL}/thredds/wms/`) &&
+          !l.currentLayer._url.includes(map.selected_path)
         ) {
           l.currentLayer.hide();
           map.removeLayer(l);
         }
       });
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
-  useMapEvent('baselayerchange', () => setupFrontLayer(layer.current, context.map));
+  useMapEvent('baselayerchange', () =>
+    setupFrontLayer(layer.current, context.map),
+  );
   // @ts-ignore
   useMapEvent('timeload', () => setupFrontLayer(layer.current, context.map));
   // @ts-ignore
   useMapEvent('timeloading', () => setupFrontLayer(layer.current, context.map));
   // @ts-ignore
-  useMapEvent('layeradd', () => setupFrontLayer(layer.current, context.map, true));
+  useMapEvent('layeradd', () =>
+    setupFrontLayer(layer.current, context.map, true),
+  );
   // @ts-ignore
-  useMapEvent('layerremove', () => setupFrontLayer(layer.current, context.map, true));
+  useMapEvent('layerremove', () =>
+    setupFrontLayer(layer.current, context.map, true),
+  );
 
   useEffect(() => {
     const map = context.map;
@@ -72,7 +81,15 @@ export const ThreddsWrapperLayer = (props: any) => {
     map.selected_path = selected_map.path;
     if (selected_map.path) {
       // @ts-ignore
-      if (layer.current && layer.current._currentLayer && layer.current._currentLayer._url && layer.current._currentLayer._url.includes(`${WMS_PROXY_URL}/thredds/wms/`) && layer.current._currentLayer._url.includes(selected_map.path)) {
+      if (
+        layer.current &&
+        layer.current._currentLayer &&
+        layer.current._currentLayer._url &&
+        layer.current._currentLayer._url.includes(
+          `${WMS_PROXY_URL}/thredds/wms/`,
+        ) &&
+        layer.current._currentLayer._url.includes(selected_map.path)
+      ) {
         setupFrontLayer(layer.current, map);
         return;
       }
@@ -93,10 +110,14 @@ export const ThreddsWrapperLayer = (props: any) => {
       };
       const options = {
         opacity: 0.85,
-        attribution: '&copy; <a target="_blank" rel="noopener" href="https://www.arpa.veneto.it/">ARPAV - Arpa FVG</a>',
-      }
+        attribution:
+          '&copy; <a target="_blank" rel="noopener" href="https://www.arpa.veneto.it/">ARPAV - Arpa FVG</a>',
+      };
       // @ts-ignore
-      const wmsLayer = new TileLayer.WMS(`${WMS_PROXY_URL}/thredds/wms/${selected_map.path}`, {...params, ...withPane(options, map),});
+      const wmsLayer = new TileLayer.WMS(
+        `${WMS_PROXY_URL}/thredds/wms/${selected_map.path}`,
+        { ...params, ...withPane(options, { __version: 1, map: map }) },
+      );
       if (selected_map.id && selected_map.data_series === 'yes') {
         // @ts-ignore
         tdWmsLayer = L.timeDimension.layer.wms(wmsLayer, {
@@ -104,7 +125,7 @@ export const ThreddsWrapperLayer = (props: any) => {
           cache: 0,
           cacheBackward: 0,
           cacheForward: 0,
-          zIndex: 1000
+          zIndex: 1000,
         });
         if (tdWmsLayer) {
           map.addLayer(tdWmsLayer);
@@ -113,7 +134,9 @@ export const ThreddsWrapperLayer = (props: any) => {
           setLayer(tdWmsLayer);
           try {
             // @ts-ignore
-            map._controlContainer.getElementsByClassName("leaflet-bar-timecontrol")[0].style.display = 'flex';
+            map._controlContainer.getElementsByClassName(
+              'leaflet-bar-timecontrol',
+            )[0].style.display = 'flex';
           } catch (e) {
             // console.log(e)
           }
@@ -124,13 +147,25 @@ export const ThreddsWrapperLayer = (props: any) => {
         setLayer(wmsLayer);
         try {
           // @ts-ignore
-          map._controlContainer.getElementsByClassName("leaflet-bar-timecontrol")[0].style.display = 'none';
+          map._controlContainer.getElementsByClassName(
+            'leaflet-bar-timecontrol',
+          )[0].style.display = 'none';
         } catch (e) {
           // console.log(e)
         }
       }
     }
-  }, [selected_map.path]);
+  }, [
+    context.map,
+    selected_map.bbox,
+    selected_map.color_scale_max,
+    selected_map.color_scale_min,
+    selected_map.data_series,
+    selected_map.id,
+    selected_map.layer_id,
+    selected_map.palette,
+    selected_map.path,
+  ]);
 
   return null;
-}
+};

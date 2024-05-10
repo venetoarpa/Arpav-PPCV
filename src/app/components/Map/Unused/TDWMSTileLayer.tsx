@@ -39,15 +39,15 @@ export const TDWMSTileLayer = createTileLayerComponent<
     return createElementObject(tdWmsLayer, context);
   },
   function updateTDWMSTileLayer(layer, props, prevProps) {
-        const { url } = props;
-        // console.log('UPDATING')
-        updateGridLayer(layer, props, prevProps);
-        if (url != null && url !== prevProps.url) {
-            // @ts-ignore
-            layer._currentLayer.setUrl(url);
-            // @ts-ignore
-            layer._currentLayer.redraw();
-        }
+    const { url } = props;
+    // console.log('UPDATING')
+    updateGridLayer(layer, props, prevProps);
+    if (url != null && url !== prevProps.url) {
+      // @ts-ignore
+      layer._currentLayer.setUrl(url);
+      // @ts-ignore
+      layer._currentLayer.redraw();
+    }
 
     if (props.params != null && props.params !== prevProps.params) {
       layer.setParams(props.params);
